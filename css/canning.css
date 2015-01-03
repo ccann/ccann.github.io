@@ -1,0 +1,82 @@
+/* CSS for personal web-page */
+
+.mono{
+    /* font-family: "Helvetica Neue",monospace; */
+
+    font-family: "Helvetica Neue";
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/*========== COLORS ==============*/
+.dew3{
+    color: rgb(193,205,193); /*honeydew3*/
+}
+.dew4{
+    color: rgb(131,139,131); /*honeydew4*/
+}
+.pt4{
+    color: rgb(102,139,139); /*paleturquoise4*/
+}
+.salmon3{
+    color: rgb(205,112,84); /*salmon3*/
+}
+.sgi-teal{
+    color: #388E8E; 
+}
+.gray91{
+    color: rgb(232,232,232);
+}
+
+/*===================================*/
+
+.page-title{
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:6%;
+    text-align:center;
+}
+.page-title-left{
+    margin-left:20%;
+    /* margin-right:30%; */
+    margin-top:6%;
+    text-align:left;
+    padding-left:20px;
+    padding-right:20px;
+}
+
+.feature-center{
+    margin-top: 3%;
+    font-size: 95%;
+    text-align:left;
+    margin-left:20%;
+    margin-right:20%;
+}
+.feature-center-alt{
+    margin-top: 3%;
+    font-size: 95%;
+    text-align:left;
+    margin-left:20%;
+    margin-right:20%;
+}
+
+.bottom-links{
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 5%;
+    text-align:center;
+}
+.bottom-links-left{
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 5%;
+    text-align:left;
+}
+
+.separator{
+    padding-left:30px;
+    padding-right:30px;
+}
