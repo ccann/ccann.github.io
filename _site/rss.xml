@@ -5,8 +5,8 @@
         <description>Cody Codes - Cody Canning</description>
         <link>http://ccann.github.io</link>
         <atom:link href="http://ccann.github.io/rss.xml" rel="self" type="application/rss+xml" />
-        <lastBuildDate>Sun, 18 Oct 2015 15:54:31 -0400</lastBuildDate>
-        <pubDate>Sun, 18 Oct 2015 15:54:31 -0400</pubDate>
+        <lastBuildDate>Mon, 19 Oct 2015 17:41:15 -0400</lastBuildDate>
+        <pubDate>Mon, 19 Oct 2015 17:41:15 -0400</pubDate>
         <ttl>60</ttl>
 
 
@@ -23,7 +23,7 @@
 &lt;/figure&gt;
 
 &lt;p&gt;
-CIDER is awesome and provides a lot of really useful utilities for working with
+CIDER isss awesome and provides a lot of really useful utilities for working with
 clojure. That said, it took me a while to get comfortable. Together with
 &lt;code&gt;clj-refactor&lt;/code&gt; and &lt;code&gt;clojure-mode&lt;/code&gt; the host of configuration options and
 keybindings can be totally overwhelming. I&#39;ll explain my configuration and
@@ -35,7 +35,7 @@ workflow below in hopes that it provides a nice starting point.
 &lt;div class=&quot;outline-text-2&quot; id=&quot;text-orgheadline1&quot;&gt;
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;&lt;span style=&quot;color: #34495e;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;clojure-mode&lt;/span&gt;
+&lt;pre class=&quot;src src-elisp&quot;&gt;&lt;span style=&quot;color: #34495e;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;clojure-mode&lt;/span&gt;
   &lt;span style=&quot;color: #16a085;&quot;&gt;:ensure&lt;/span&gt; t
   &lt;span style=&quot;color: #16a085;&quot;&gt;:mode&lt;/span&gt; &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #2ecc71;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;\\.clj\\&#39;&quot;&lt;/span&gt; . clojure-mode&lt;span style=&quot;color: #2ecc71;&quot;&gt;)&lt;/span&gt;
          &lt;span style=&quot;color: #2ecc71;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;\\.edn\\&#39;&quot;&lt;/span&gt; . clojure-mode&lt;span style=&quot;color: #2ecc71;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;

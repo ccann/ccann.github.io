@@ -21,6 +21,30 @@ h1, h2, h3, h4 {
   background-color: #fdcd60;
 }
 
+body {
+    background-color: #ecf0f1;
+}
+
+@media(min-width:768px)
+{.container {
+    width: 60em;
+    }}
+
+pre {
+    /* darktooth */
+    /* color: #FDF4C1; */
+    /* background-color: #282828; */
+
+    /* flat-ui */
+    color: black;
+    background-color: #ecf0f1;
+
+    max-width: 60em;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+
+
+}
 
 
 /* posts index */
