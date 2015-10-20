@@ -4,7 +4,7 @@
  <title>Cody Codes</title>
  <link href="http://ccann.github.io/atom.xml" rel="self"/>
  <link href="http://ccann.github.io"/>
- <updated>2015-10-20T16:22:04-04:00</updated>
+ <updated>2015-10-20T16:28:46-04:00</updated>
  <id>http://ccann.github.io</id>
  <author>
    <name>Cody Canning</name>
@@ -72,6 +72,7 @@ nested delimeters like Clojure.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;
+&lt;br &gt;
 Now let&#39;s configure &lt;code&gt;cider&lt;/code&gt;:
 &lt;/p&gt;
 
@@ -101,21 +102,28 @@ What&#39;s going on here?
 &lt;li&gt;ensure cider is installed&lt;/li&gt;
 &lt;li&gt;activate &lt;code&gt;clj-refactor-mode&lt;/code&gt; with &lt;code&gt;cider&lt;/code&gt; with &lt;code&gt;add-hook&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;:diminish&lt;/code&gt; hides the &lt;code&gt;subword-mode&lt;/code&gt; minor mode symbol from the mode-line if &lt;code&gt;diminish.el&lt;/code&gt; is installed&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;:config&lt;/code&gt; executes code after the package is loaded. Here we configure some of
-cider&#39;s variables. Each of these settings is explained in detail in &lt;a href=&quot;https://github.com/clojure-emacs/cider&quot;&gt;the CIDER
-readme&lt;/a&gt;.&lt;/li&gt;
-
-&lt;li&gt;&lt;code&gt;(setq nrepl-log-messages t)&lt;/code&gt;: useful for debugging&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;(setq cider-repl-display-in-current-window t)&lt;/code&gt;: switch to REPL in this window&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;(setq cider-repl-use-clojure-font-lock t)&lt;/code&gt;: syntax highlighting in REPL&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;(setq cider-prompt-save-file-on-load &#39;always-save)&lt;/code&gt;: just always save when loading buffer&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;(setq cider-font-lock-dynamically &#39;(macro core function var)&lt;/code&gt;: syntax highlight all namespaces&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;(setq nrepl-hide-special-buffers t)&lt;/code&gt;: hide nrepl buffers from menu&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;(setq cider-overlays-use-font-lock t)&lt;/code&gt;: syntax highlight evaluation overlays&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;(cider-repl-toggle-pretty-printing)&lt;/code&gt;: REPL always pretty-prints results&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;
+&lt;br &gt;
+The &lt;code&gt;:config&lt;/code&gt; keyword specifies code to be executed after the package is
+loaded. Here we configure some of cider&#39;s variables. Each of the following
+settings is explained in detail in &lt;a href=&quot;https://github.com/clojure-emacs/cider&quot;&gt;the CIDER readme&lt;/a&gt; too:
+&lt;/p&gt;
+
+&lt;ul class=&quot;org-ul&quot;&gt;
+&lt;li&gt;&lt;code&gt;nrepl-log-messages&lt;/code&gt;: useful for debugging&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cider-repl-display-in-current-window&lt;/code&gt;: switch to REPL in this window&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cider-repl-use-clojure-font-lock&lt;/code&gt;: syntax highlighting in REPL&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cider-prompt-save-file-on-load&lt;/code&gt;: just always save when loading buffer&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cider-font-lock-dynamically&lt;/code&gt;: syntax highlight all namespaces&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;nrepl-hide-special-buffers&lt;/code&gt;: hide nrepl buffers from menu&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cider-overlays-use-font-lock&lt;/code&gt;: syntax highlight evaluation overlays&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cider-repl-toggle-pretty-printing&lt;/code&gt;: REPL always pretty-prints results&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+&lt;br &gt;
 Lastly I&#39;ll leave you with some of the other package configurations for related
 modes (some referenced above). Enjoy!:
 &lt;/p&gt;

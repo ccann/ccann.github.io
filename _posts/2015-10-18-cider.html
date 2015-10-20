@@ -59,6 +59,7 @@ nested delimeters like Clojure.</li>
 </ul>
 
 <p>
+<br >
 Now let's configure <code>cider</code>:
 </p>
 
@@ -88,21 +89,28 @@ What's going on here?
 <li>ensure cider is installed</li>
 <li>activate <code>clj-refactor-mode</code> with <code>cider</code> with <code>add-hook</code></li>
 <li><code>:diminish</code> hides the <code>subword-mode</code> minor mode symbol from the mode-line if <code>diminish.el</code> is installed</li>
-<li><code>:config</code> executes code after the package is loaded. Here we configure some of
-cider's variables. Each of these settings is explained in detail in <a href="https://github.com/clojure-emacs/cider">the CIDER
-readme</a>.</li>
-
-<li><code>(setq nrepl-log-messages t)</code>: useful for debugging</li>
-<li><code>(setq cider-repl-display-in-current-window t)</code>: switch to REPL in this window</li>
-<li><code>(setq cider-repl-use-clojure-font-lock t)</code>: syntax highlighting in REPL</li>
-<li><code>(setq cider-prompt-save-file-on-load 'always-save)</code>: just always save when loading buffer</li>
-<li><code>(setq cider-font-lock-dynamically '(macro core function var)</code>: syntax highlight all namespaces</li>
-<li><code>(setq nrepl-hide-special-buffers t)</code>: hide nrepl buffers from menu</li>
-<li><code>(setq cider-overlays-use-font-lock t)</code>: syntax highlight evaluation overlays</li>
-<li><code>(cider-repl-toggle-pretty-printing)</code>: REPL always pretty-prints results</li>
 </ul>
 
 <p>
+<br >
+The <code>:config</code> keyword specifies code to be executed after the package is
+loaded. Here we configure some of cider's variables. Each of the following
+settings is explained in detail in <a href="https://github.com/clojure-emacs/cider">the CIDER readme</a> too:
+</p>
+
+<ul class="org-ul">
+<li><code>nrepl-log-messages</code>: useful for debugging</li>
+<li><code>cider-repl-display-in-current-window</code>: switch to REPL in this window</li>
+<li><code>cider-repl-use-clojure-font-lock</code>: syntax highlighting in REPL</li>
+<li><code>cider-prompt-save-file-on-load</code>: just always save when loading buffer</li>
+<li><code>cider-font-lock-dynamically</code>: syntax highlight all namespaces</li>
+<li><code>nrepl-hide-special-buffers</code>: hide nrepl buffers from menu</li>
+<li><code>cider-overlays-use-font-lock</code>: syntax highlight evaluation overlays</li>
+<li><code>cider-repl-toggle-pretty-printing</code>: REPL always pretty-prints results</li>
+</ul>
+
+<p>
+<br >
 Lastly I'll leave you with some of the other package configurations for related
 modes (some referenced above). Enjoy!:
 </p>
