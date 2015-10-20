@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>CIDER</title>
+    <title>A Basic CIDER Configuration with use-package</title>
     
     <meta name="author" content="Cody Canning">
 
@@ -108,7 +108,7 @@
       <div class="container">
         
 <div class="page-header">
-  <h1>CIDER </h1>
+  <h1>A Basic CIDER Configuration with use-package </h1>
 </div>
 
 <div class="row post-full">
@@ -118,7 +118,7 @@
     </div>
     <div class="content">
       <p>
-<a href="https://github.com/clojure-emacs/cider"><code>CIDER</code></a> is a clojure IDE for emacs.
+<a href="https://github.com/clojure-emacs/cider"><code>CIDER</code></a> is a Clojure IDE for Emacs.
 </p>
 
 
@@ -128,16 +128,21 @@
 
 
 <p>
-CIDER isss awesome and provides a lot of really useful utilities for working with
-clojure. That said, it took me a while to get comfortable. Together with
-<code>clj-refactor</code> and <code>clojure-mode</code> the host of configuration options and
-keybindings can be totally overwhelming. I'll explain my configuration and
-workflow below in hopes that it provides a nice starting point.
+CIDER provides a lot of really useful utilities for working with clojure. That
+said, it took me a while to get comfortable. Together with <code>clj-refactor</code> and
+<code>clojure-mode</code> the host of configuration options and keybindings can be totally
+overwhelming. I'll explain my configuration and workflow below in hopes that it
+provides a nice starting point.
 </p>
 
 <div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">Configuration</h2>
+<h2 id="orgheadline1">Emacs Configuration</h2>
 <div class="outline-text-2" id="text-orgheadline1">
+<p>
+<a href="https://github.com/jwiegley/use-package"><code>use-package</code></a> is a macro for
+configuring packages in emacs. Let's use it to configure <code>clojure-mode</code> first.
+</p>
+
 <div class="org-src-container">
 
 <pre class="src src-elisp">(<span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">clojure-mode</span>
@@ -145,38 +150,109 @@ workflow below in hopes that it provides a nice starting point.
   <span style="color: #16a085;">:mode</span> ((<span style="color: #0a74b9;">"\\.clj\\'"</span> . clojure-mode)
          (<span style="color: #0a74b9;">"\\.edn\\'"</span> . clojure-mode))
   <span style="color: #16a085;">:init</span>
-  (setq cljr-suppress-middleware-warnings t)
-  (add-hook 'clojure-mode-hook #'yas-minor-mode)
-  (add-hook 'clojure-mode-hook #'linum-mode)
-  (add-hook 'clojure-mode-hook #'subword-mode)
-  (add-hook 'clojure-mode-hook #'smartparens-mode)
+  (add-hook 'clojure-mode-hook #'yas-minor-mode)         
+  (add-hook 'clojure-mode-hook #'linum-mode)             
+  (add-hook 'clojure-mode-hook #'subword-mode)           
+  (add-hook 'clojure-mode-hook #'smartparens-mode)       
   (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
-  (add-hook 'clojure-mode-hook #'eldoc-mode)
-  (add-hook 'clojure-mode-hook #'idle-highlight-mode)
-  (<span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">slamhound</span> <span style="color: #16a085;">:defer</span> t <span style="color: #16a085;">:ensure</span> t)
-  (<span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">clj-refactor</span>
-    <span style="color: #16a085;">:defer</span> t
-    <span style="color: #16a085;">:ensure</span> t
-    <span style="color: #16a085;">:diminish</span> clj-refactor-mode
-    <span style="color: #16a085;">:config</span> (cljr-add-keybindings-with-prefix <span style="color: #0a74b9;">"C-c C-m"</span>))  
-  (<span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">cider-eval-sexp-fu</span> <span style="color: #16a085;">:defer</span> t <span style="color: #16a085;">:ensure</span> t)
-  (<span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">cider</span>
-    <span style="color: #16a085;">:ensure</span> t
-    <span style="color: #16a085;">:defer</span> t
-    <span style="color: #16a085;">:init</span>
-    (add-hook 'cider-mode-hook #'clj-refactor-mode)
-    <span style="color: #16a085;">:diminish</span> subword-mode
-    <span style="color: #16a085;">:config</span>
-    (setq nrepl-log-messages t                   <span style="color: #95a5a6;">; </span><span style="color: #7f8c8d;">log communication with the nREPL server</span>
-          cider-repl-display-in-current-window t 
-          cider-repl-use-clojure-font-lock t
-          cider-prompt-save-file-on-load nil
-          cider-font-lock-dynamically '(macro core function var)
-          nrepl-hide-special-buffers t            <span style="color: #95a5a6;">; </span><span style="color: #7f8c8d;">hide *nrepl-connection* and *nrepl-server*</span>
-          cider-ovelays-use-font-lock t)
-    (cider-repl-toggle-pretty-printing)))
+  (add-hook 'clojure-mode-hook #'eldoc-mode)             
+  (add-hook 'clojure-mode-hook #'idle-highlight-mode))
 </pre>
 </div>
+
+<ul class="org-ul">
+<li>I always want <code>clojure-mode</code> installed on my system so I designate <code>:ensure t</code></li>
+<li>activate <code>clojure-mode</code> whenever I open a file with the <code>.clj</code> or <code>.edn</code> extensions</li>
+<li>use <code>:init</code> to add hooks for minor-modes we want activated before the
+<code>clojure-mode</code> package is loaded. These are just some of the minor-modes <span class="underline">I
+personally</span> find useful when writing clojure. You'll have to ensure that these
+modes are installed separately.<a href="https://github.com/Fuco1/smartparens"><code>smartparens-mode</code></a> and similar modes like
+<a href="http://emacsrocks.com/e14.html"><code>paredit</code></a> and <a href="https://github.com/abo-abo/lispy"><code>lispy</code></a> are quite useful for programming in languages with
+nested delimeters like Clojure.</li>
+</ul>
+
+<p>
+Now let's configure <code>cider</code>:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-elisp">(<span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">cider</span>
+  <span style="color: #16a085;">:ensure</span> t
+  <span style="color: #16a085;">:defer</span> t
+  <span style="color: #16a085;">:init</span> (add-hook 'cider-mode-hook #'clj-refactor-mode)
+  <span style="color: #16a085;">:diminish</span> subword-mode
+  <span style="color: #16a085;">:config</span>
+  (setq nrepl-log-messages t                  
+        cider-repl-display-in-current-window t
+        cider-repl-use-clojure-font-lock t    
+        cider-prompt-save-file-on-load 'always-save
+        cider-font-lock-dynamically '(macro core function var)
+        nrepl-hide-special-buffers t            
+        cider-overlays-use-font-lock t)         
+  (cider-repl-toggle-pretty-printing))
+</pre>
+</div>
+
+<p>
+What's going on here?
+</p>
+<ul class="org-ul">
+<li>ensure cider is installed</li>
+<li>activate <code>clj-refactor-mode</code> with <code>cider</code> with <code>add-hook</code></li>
+<li><code>:diminish</code> hides the <code>subword-mode</code> minor mode symbol from the mode-line if <code>diminish.el</code> is installed</li>
+<li><code>:config</code> executes code after the package is loaded. Here we configure some of
+cider's variables. Each of these settings is explained in detail in <a href="https://github.com/clojure-emacs/cider">the CIDER
+readme</a>.</li>
+
+<li><code>(setq nrepl-log-messages t)</code>: useful for debugging</li>
+<li><code>(setq cider-repl-display-in-current-window t)</code>: switch to REPL in this window</li>
+<li><code>(setq cider-repl-use-clojure-font-lock t)</code>: syntax highlighting in REPL</li>
+<li><code>(setq cider-prompt-save-file-on-load 'always-save)</code>: just always save when loading buffer</li>
+<li><code>(setq cider-font-lock-dynamically '(macro core function var)</code>: syntax highlight all namespaces</li>
+<li><code>(setq nrepl-hide-special-buffers t)</code>: hide nrepl buffers from menu</li>
+<li><code>(setq cider-overlays-use-font-lock t)</code>: syntax highlight evaluation overlays</li>
+<li><code>(cider-repl-toggle-pretty-printing)</code>: REPL always pretty-prints results</li>
+</ul>
+
+<p>
+Lastly I'll leave you with some of the other package configurations for related
+modes (some referenced above). Enjoy!:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-elisp">(<span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">cider-eval-sexp-fu</span>
+  <span style="color: #16a085;">:defer</span> t)
+
+(<span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">clj-refactor</span>
+  <span style="color: #16a085;">:defer</span> t
+  <span style="color: #16a085;">:ensure</span> t
+  <span style="color: #16a085;">:diminish</span> clj-refactor-mode
+  <span style="color: #16a085;">:config</span> (cljr-add-keybindings-with-prefix <span style="color: #0a74b9;">"C-c C-m"</span>))
+
+(<span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">smartparens</span>
+  <span style="color: #16a085;">:defer</span> t
+  <span style="color: #16a085;">:ensure</span> t
+  <span style="color: #16a085;">:diminish</span> smartparens-mode
+  <span style="color: #16a085;">:init</span>
+  (setq sp-override-key-bindings
+        '((<span style="color: #0a74b9;">"C-&lt;right&gt;"</span> . nil)
+          (<span style="color: #0a74b9;">"C-&lt;left&gt;"</span> . nil)
+          (<span style="color: #0a74b9;">"C-)"</span> . sp-forward-slurp-sexp)
+          (<span style="color: #0a74b9;">"M-&lt;backspace&gt;"</span> . nil)
+          (<span style="color: #0a74b9;">"C-("</span> . sp-forward-barf-sexp)))
+  <span style="color: #16a085;">:config</span>
+  (<span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">smartparens-config</span>)
+  (sp-use-smartparens-bindings)
+  (sp--update-override-key-bindings)
+  <span style="color: #16a085;">:commands</span> (smartparens-mode show-smartparens-mode))
+</pre>
+</div>
+
+<p>
+Up next I'll quickly cover my <code>CIDER</code> workflow&#x2026;
+</p>
 </div>
 </div>
 
@@ -184,6 +260,26 @@ workflow below in hopes that it provides a nice starting point.
 
     
 
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#emacs-ref">emacs <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#cider-ref">cider <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#clojure-ref">clojure <span>1</span></a></li>
+    
+  
+
+
+
+    </ul>
     
   
     <hr>

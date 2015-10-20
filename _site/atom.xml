@@ -4,7 +4,7 @@
  <title>Cody Codes</title>
  <link href="http://ccann.github.io/atom.xml" rel="self"/>
  <link href="http://ccann.github.io"/>
- <updated>2015-10-20T14:54:45-04:00</updated>
+ <updated>2015-10-20T16:22:04-04:00</updated>
  <id>http://ccann.github.io</id>
  <author>
    <name>Cody Canning</name>
@@ -13,12 +13,12 @@
 
  
  <entry>
-   <title>CIDER</title>
+   <title>A Basic CIDER Configuration with use-package</title>
    <link href="http://ccann.github.io/2015/10/18/cider"/>
    <updated>2015-10-18T00:00:00-04:00</updated>
    <id>http://ccann.github.io/2015/10/18/cider</id>
    <content type="html">&lt;p&gt;
-&lt;a href=&quot;https://github.com/clojure-emacs/cider&quot;&gt;&lt;code&gt;CIDER&lt;/code&gt;&lt;/a&gt; is a clojure IDE for emacs.
+&lt;a href=&quot;https://github.com/clojure-emacs/cider&quot;&gt;&lt;code&gt;CIDER&lt;/code&gt;&lt;/a&gt; is a Clojure IDE for Emacs.
 &lt;/p&gt;
 
 
@@ -28,16 +28,21 @@
 
 
 &lt;p&gt;
-CIDER isss awesome and provides a lot of really useful utilities for working with
-clojure. That said, it took me a while to get comfortable. Together with
-&lt;code&gt;clj-refactor&lt;/code&gt; and &lt;code&gt;clojure-mode&lt;/code&gt; the host of configuration options and
-keybindings can be totally overwhelming. I&#39;ll explain my configuration and
-workflow below in hopes that it provides a nice starting point.
+CIDER provides a lot of really useful utilities for working with clojure. That
+said, it took me a while to get comfortable. Together with &lt;code&gt;clj-refactor&lt;/code&gt; and
+&lt;code&gt;clojure-mode&lt;/code&gt; the host of configuration options and keybindings can be totally
+overwhelming. I&#39;ll explain my configuration and workflow below in hopes that it
+provides a nice starting point.
 &lt;/p&gt;
 
 &lt;div id=&quot;outline-container-orgheadline1&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;orgheadline1&quot;&gt;Configuration&lt;/h2&gt;
+&lt;h2 id=&quot;orgheadline1&quot;&gt;Emacs Configuration&lt;/h2&gt;
 &lt;div class=&quot;outline-text-2&quot; id=&quot;text-orgheadline1&quot;&gt;
+&lt;p&gt;
+&lt;a href=&quot;https://github.com/jwiegley/use-package&quot;&gt;&lt;code&gt;use-package&lt;/code&gt;&lt;/a&gt; is a macro for
+configuring packages in emacs. Let&#39;s use it to configure &lt;code&gt;clojure-mode&lt;/code&gt; first.
+&lt;/p&gt;
+
 &lt;div class=&quot;org-src-container&quot;&gt;
 
 &lt;pre class=&quot;src src-elisp&quot;&gt;(&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;clojure-mode&lt;/span&gt;
@@ -45,38 +50,109 @@ workflow below in hopes that it provides a nice starting point.
   &lt;span style=&quot;color: #16a085;&quot;&gt;:mode&lt;/span&gt; ((&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;\\.clj\\&#39;&quot;&lt;/span&gt; . clojure-mode)
          (&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;\\.edn\\&#39;&quot;&lt;/span&gt; . clojure-mode))
   &lt;span style=&quot;color: #16a085;&quot;&gt;:init&lt;/span&gt;
-  (setq cljr-suppress-middleware-warnings t)
-  (add-hook &#39;clojure-mode-hook #&#39;yas-minor-mode)
-  (add-hook &#39;clojure-mode-hook #&#39;linum-mode)
-  (add-hook &#39;clojure-mode-hook #&#39;subword-mode)
-  (add-hook &#39;clojure-mode-hook #&#39;smartparens-mode)
+  (add-hook &#39;clojure-mode-hook #&#39;yas-minor-mode)         
+  (add-hook &#39;clojure-mode-hook #&#39;linum-mode)             
+  (add-hook &#39;clojure-mode-hook #&#39;subword-mode)           
+  (add-hook &#39;clojure-mode-hook #&#39;smartparens-mode)       
   (add-hook &#39;clojure-mode-hook #&#39;rainbow-delimiters-mode)
-  (add-hook &#39;clojure-mode-hook #&#39;eldoc-mode)
-  (add-hook &#39;clojure-mode-hook #&#39;idle-highlight-mode)
-  (&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;slamhound&lt;/span&gt; &lt;span style=&quot;color: #16a085;&quot;&gt;:defer&lt;/span&gt; t &lt;span style=&quot;color: #16a085;&quot;&gt;:ensure&lt;/span&gt; t)
-  (&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;clj-refactor&lt;/span&gt;
-    &lt;span style=&quot;color: #16a085;&quot;&gt;:defer&lt;/span&gt; t
-    &lt;span style=&quot;color: #16a085;&quot;&gt;:ensure&lt;/span&gt; t
-    &lt;span style=&quot;color: #16a085;&quot;&gt;:diminish&lt;/span&gt; clj-refactor-mode
-    &lt;span style=&quot;color: #16a085;&quot;&gt;:config&lt;/span&gt; (cljr-add-keybindings-with-prefix &lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;C-c C-m&quot;&lt;/span&gt;))  
-  (&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;cider-eval-sexp-fu&lt;/span&gt; &lt;span style=&quot;color: #16a085;&quot;&gt;:defer&lt;/span&gt; t &lt;span style=&quot;color: #16a085;&quot;&gt;:ensure&lt;/span&gt; t)
-  (&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;cider&lt;/span&gt;
-    &lt;span style=&quot;color: #16a085;&quot;&gt;:ensure&lt;/span&gt; t
-    &lt;span style=&quot;color: #16a085;&quot;&gt;:defer&lt;/span&gt; t
-    &lt;span style=&quot;color: #16a085;&quot;&gt;:init&lt;/span&gt;
-    (add-hook &#39;cider-mode-hook #&#39;clj-refactor-mode)
-    &lt;span style=&quot;color: #16a085;&quot;&gt;:diminish&lt;/span&gt; subword-mode
-    &lt;span style=&quot;color: #16a085;&quot;&gt;:config&lt;/span&gt;
-    (setq nrepl-log-messages t                   &lt;span style=&quot;color: #95a5a6;&quot;&gt;; &lt;/span&gt;&lt;span style=&quot;color: #7f8c8d;&quot;&gt;log communication with the nREPL server&lt;/span&gt;
-          cider-repl-display-in-current-window t 
-          cider-repl-use-clojure-font-lock t
-          cider-prompt-save-file-on-load nil
-          cider-font-lock-dynamically &#39;(macro core function var)
-          nrepl-hide-special-buffers t            &lt;span style=&quot;color: #95a5a6;&quot;&gt;; &lt;/span&gt;&lt;span style=&quot;color: #7f8c8d;&quot;&gt;hide *nrepl-connection* and *nrepl-server*&lt;/span&gt;
-          cider-ovelays-use-font-lock t)
-    (cider-repl-toggle-pretty-printing)))
+  (add-hook &#39;clojure-mode-hook #&#39;eldoc-mode)             
+  (add-hook &#39;clojure-mode-hook #&#39;idle-highlight-mode))
 &lt;/pre&gt;
 &lt;/div&gt;
+
+&lt;ul class=&quot;org-ul&quot;&gt;
+&lt;li&gt;I always want &lt;code&gt;clojure-mode&lt;/code&gt; installed on my system so I designate &lt;code&gt;:ensure t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;activate &lt;code&gt;clojure-mode&lt;/code&gt; whenever I open a file with the &lt;code&gt;.clj&lt;/code&gt; or &lt;code&gt;.edn&lt;/code&gt; extensions&lt;/li&gt;
+&lt;li&gt;use &lt;code&gt;:init&lt;/code&gt; to add hooks for minor-modes we want activated before the
+&lt;code&gt;clojure-mode&lt;/code&gt; package is loaded. These are just some of the minor-modes &lt;span class=&quot;underline&quot;&gt;I
+personally&lt;/span&gt; find useful when writing clojure. You&#39;ll have to ensure that these
+modes are installed separately.&lt;a href=&quot;https://github.com/Fuco1/smartparens&quot;&gt;&lt;code&gt;smartparens-mode&lt;/code&gt;&lt;/a&gt; and similar modes like
+&lt;a href=&quot;http://emacsrocks.com/e14.html&quot;&gt;&lt;code&gt;paredit&lt;/code&gt;&lt;/a&gt; and &lt;a href=&quot;https://github.com/abo-abo/lispy&quot;&gt;&lt;code&gt;lispy&lt;/code&gt;&lt;/a&gt; are quite useful for programming in languages with
+nested delimeters like Clojure.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Now let&#39;s configure &lt;code&gt;cider&lt;/code&gt;:
+&lt;/p&gt;
+
+&lt;div class=&quot;org-src-container&quot;&gt;
+
+&lt;pre class=&quot;src src-elisp&quot;&gt;(&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;cider&lt;/span&gt;
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:ensure&lt;/span&gt; t
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:defer&lt;/span&gt; t
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:init&lt;/span&gt; (add-hook &#39;cider-mode-hook #&#39;clj-refactor-mode)
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:diminish&lt;/span&gt; subword-mode
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:config&lt;/span&gt;
+  (setq nrepl-log-messages t                  
+        cider-repl-display-in-current-window t
+        cider-repl-use-clojure-font-lock t    
+        cider-prompt-save-file-on-load &#39;always-save
+        cider-font-lock-dynamically &#39;(macro core function var)
+        nrepl-hide-special-buffers t            
+        cider-overlays-use-font-lock t)         
+  (cider-repl-toggle-pretty-printing))
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+What&#39;s going on here?
+&lt;/p&gt;
+&lt;ul class=&quot;org-ul&quot;&gt;
+&lt;li&gt;ensure cider is installed&lt;/li&gt;
+&lt;li&gt;activate &lt;code&gt;clj-refactor-mode&lt;/code&gt; with &lt;code&gt;cider&lt;/code&gt; with &lt;code&gt;add-hook&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;:diminish&lt;/code&gt; hides the &lt;code&gt;subword-mode&lt;/code&gt; minor mode symbol from the mode-line if &lt;code&gt;diminish.el&lt;/code&gt; is installed&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;:config&lt;/code&gt; executes code after the package is loaded. Here we configure some of
+cider&#39;s variables. Each of these settings is explained in detail in &lt;a href=&quot;https://github.com/clojure-emacs/cider&quot;&gt;the CIDER
+readme&lt;/a&gt;.&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;(setq nrepl-log-messages t)&lt;/code&gt;: useful for debugging&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(setq cider-repl-display-in-current-window t)&lt;/code&gt;: switch to REPL in this window&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(setq cider-repl-use-clojure-font-lock t)&lt;/code&gt;: syntax highlighting in REPL&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(setq cider-prompt-save-file-on-load &#39;always-save)&lt;/code&gt;: just always save when loading buffer&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(setq cider-font-lock-dynamically &#39;(macro core function var)&lt;/code&gt;: syntax highlight all namespaces&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(setq nrepl-hide-special-buffers t)&lt;/code&gt;: hide nrepl buffers from menu&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(setq cider-overlays-use-font-lock t)&lt;/code&gt;: syntax highlight evaluation overlays&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(cider-repl-toggle-pretty-printing)&lt;/code&gt;: REPL always pretty-prints results&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Lastly I&#39;ll leave you with some of the other package configurations for related
+modes (some referenced above). Enjoy!:
+&lt;/p&gt;
+
+&lt;div class=&quot;org-src-container&quot;&gt;
+
+&lt;pre class=&quot;src src-elisp&quot;&gt;(&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;cider-eval-sexp-fu&lt;/span&gt;
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:defer&lt;/span&gt; t)
+
+(&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;clj-refactor&lt;/span&gt;
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:defer&lt;/span&gt; t
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:ensure&lt;/span&gt; t
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:diminish&lt;/span&gt; clj-refactor-mode
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:config&lt;/span&gt; (cljr-add-keybindings-with-prefix &lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;C-c C-m&quot;&lt;/span&gt;))
+
+(&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;smartparens&lt;/span&gt;
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:defer&lt;/span&gt; t
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:ensure&lt;/span&gt; t
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:diminish&lt;/span&gt; smartparens-mode
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:init&lt;/span&gt;
+  (setq sp-override-key-bindings
+        &#39;((&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;C-&amp;lt;right&amp;gt;&quot;&lt;/span&gt; . nil)
+          (&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;C-&amp;lt;left&amp;gt;&quot;&lt;/span&gt; . nil)
+          (&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;C-)&quot;&lt;/span&gt; . sp-forward-slurp-sexp)
+          (&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;M-&amp;lt;backspace&amp;gt;&quot;&lt;/span&gt; . nil)
+          (&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;C-(&quot;&lt;/span&gt; . sp-forward-barf-sexp)))
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:config&lt;/span&gt;
+  (&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;smartparens-config&lt;/span&gt;)
+  (sp-use-smartparens-bindings)
+  (sp--update-override-key-bindings)
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:commands&lt;/span&gt; (smartparens-mode show-smartparens-mode))
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Up next I&#39;ll quickly cover my &lt;code&gt;CIDER&lt;/code&gt; workflow&amp;#x2026;
+&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </content>
