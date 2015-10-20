@@ -1,9 +1,7 @@
 
 http://ccann.github.io/archive.html
 http://ccann.github.io/atom.xml
-http://ccann.github.io/categories.html
 http://ccann.github.io/index.html
-http://ccann.github.io/pages.html
 http://ccann.github.io/rss.xml
 http://ccann.github.io/sitemap.txt
 http://ccann.github.io/tags.html

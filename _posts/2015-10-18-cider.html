@@ -8,10 +8,10 @@ title: CIDER
 </p>
 
 
-<figure id="orgparagraph1">
-<p><img src="./cider.png" alt="cider.png">
-</p>
-</figure>
+<br>
+<image src="/assets/cider.png" class="resizing-img" style="padding: 15px;"/>
+<br><br>
+
 
 <p>
 CIDER isss awesome and provides a lot of really useful utilities for working with
@@ -26,41 +26,41 @@ workflow below in hopes that it provides a nice starting point.
 <div class="outline-text-2" id="text-orgheadline1">
 <div class="org-src-container">
 
-<pre class="src src-elisp"><span style="color: #34495e;">(</span><span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">clojure-mode</span>
+<pre class="src src-elisp">(<span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">clojure-mode</span>
   <span style="color: #16a085;">:ensure</span> t
-  <span style="color: #16a085;">:mode</span> <span style="color: #1abc9c;">(</span><span style="color: #2ecc71;">(</span><span style="color: #0a74b9;">"\\.clj\\'"</span> . clojure-mode<span style="color: #2ecc71;">)</span>
-         <span style="color: #2ecc71;">(</span><span style="color: #0a74b9;">"\\.edn\\'"</span> . clojure-mode<span style="color: #2ecc71;">)</span><span style="color: #1abc9c;">)</span>
+  <span style="color: #16a085;">:mode</span> ((<span style="color: #0a74b9;">"\\.clj\\'"</span> . clojure-mode)
+         (<span style="color: #0a74b9;">"\\.edn\\'"</span> . clojure-mode))
   <span style="color: #16a085;">:init</span>
-  <span style="color: #1abc9c;">(</span>setq cljr-suppress-middleware-warnings t<span style="color: #1abc9c;">)</span>
-  <span style="color: #1abc9c;">(</span>add-hook 'clojure-mode-hook #'yas-minor-mode<span style="color: #1abc9c;">)</span>
-  <span style="color: #1abc9c;">(</span>add-hook 'clojure-mode-hook #'linum-mode<span style="color: #1abc9c;">)</span>
-  <span style="color: #1abc9c;">(</span>add-hook 'clojure-mode-hook #'subword-mode<span style="color: #1abc9c;">)</span>
-  <span style="color: #1abc9c;">(</span>add-hook 'clojure-mode-hook #'smartparens-mode<span style="color: #1abc9c;">)</span>
-  <span style="color: #1abc9c;">(</span>add-hook 'clojure-mode-hook #'rainbow-delimiters-mode<span style="color: #1abc9c;">)</span>
-  <span style="color: #1abc9c;">(</span>add-hook 'clojure-mode-hook #'eldoc-mode<span style="color: #1abc9c;">)</span>
-  <span style="color: #1abc9c;">(</span>add-hook 'clojure-mode-hook #'idle-highlight-mode<span style="color: #1abc9c;">)</span>
-  <span style="color: #1abc9c;">(</span><span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">slamhound</span> <span style="color: #16a085;">:defer</span> t <span style="color: #16a085;">:ensure</span> t<span style="color: #1abc9c;">)</span>
-  <span style="color: #1abc9c;">(</span><span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">clj-refactor</span>
+  (setq cljr-suppress-middleware-warnings t)
+  (add-hook 'clojure-mode-hook #'yas-minor-mode)
+  (add-hook 'clojure-mode-hook #'linum-mode)
+  (add-hook 'clojure-mode-hook #'subword-mode)
+  (add-hook 'clojure-mode-hook #'smartparens-mode)
+  (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'clojure-mode-hook #'eldoc-mode)
+  (add-hook 'clojure-mode-hook #'idle-highlight-mode)
+  (<span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">slamhound</span> <span style="color: #16a085;">:defer</span> t <span style="color: #16a085;">:ensure</span> t)
+  (<span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">clj-refactor</span>
     <span style="color: #16a085;">:defer</span> t
     <span style="color: #16a085;">:ensure</span> t
     <span style="color: #16a085;">:diminish</span> clj-refactor-mode
-    <span style="color: #16a085;">:config</span> <span style="color: #2ecc71;">(</span>cljr-add-keybindings-with-prefix <span style="color: #0a74b9;">"C-c C-m"</span><span style="color: #2ecc71;">)</span><span style="color: #1abc9c;">)</span>  
-  <span style="color: #1abc9c;">(</span><span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">cider-eval-sexp-fu</span> <span style="color: #16a085;">:defer</span> t <span style="color: #16a085;">:ensure</span> t<span style="color: #1abc9c;">)</span>
-  <span style="color: #1abc9c;">(</span><span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">cider</span>
+    <span style="color: #16a085;">:config</span> (cljr-add-keybindings-with-prefix <span style="color: #0a74b9;">"C-c C-m"</span>))  
+  (<span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">cider-eval-sexp-fu</span> <span style="color: #16a085;">:defer</span> t <span style="color: #16a085;">:ensure</span> t)
+  (<span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">cider</span>
     <span style="color: #16a085;">:ensure</span> t
     <span style="color: #16a085;">:defer</span> t
     <span style="color: #16a085;">:init</span>
-    <span style="color: #2ecc71;">(</span>add-hook 'cider-mode-hook #'clj-refactor-mode<span style="color: #2ecc71;">)</span>
+    (add-hook 'cider-mode-hook #'clj-refactor-mode)
     <span style="color: #16a085;">:diminish</span> subword-mode
     <span style="color: #16a085;">:config</span>
-    <span style="color: #2ecc71;">(</span>setq nrepl-log-messages t                   <span style="color: #95a5a6;">; </span><span style="color: #7f8c8d;">log communication with the nREPL server</span>
+    (setq nrepl-log-messages t                   <span style="color: #95a5a6;">; </span><span style="color: #7f8c8d;">log communication with the nREPL server</span>
           cider-repl-display-in-current-window t 
           cider-repl-use-clojure-font-lock t
           cider-prompt-save-file-on-load nil
-          cider-font-lock-dynamically '<span style="color: #2492db;">(</span>macro core function var<span style="color: #2492db;">)</span>
+          cider-font-lock-dynamically '(macro core function var)
           nrepl-hide-special-buffers t            <span style="color: #95a5a6;">; </span><span style="color: #7f8c8d;">hide *nrepl-connection* and *nrepl-server*</span>
-          cider-ovelays-use-font-lock t<span style="color: #2ecc71;">)</span>
-    <span style="color: #2ecc71;">(</span>cider-repl-toggle-pretty-printing<span style="color: #2ecc71;">)</span><span style="color: #1abc9c;">)</span><span style="color: #34495e;">)</span>
+          cider-ovelays-use-font-lock t)
+    (cider-repl-toggle-pretty-printing)))
 </pre>
 </div>
 </div>

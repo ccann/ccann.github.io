@@ -13,28 +13,103 @@
 /*.navbar .nav {
   float: right; }*/
 
+
+/* FlatUI colors
+  '(("clouds"          . "#ecf0f1")
+    ("silver"          . "#dfe4ea")
+    ("concrete"        . "#95a5a6")
+    ("asbestos"        . "#7f8c8d")
+    ("wet-asphalt"     . "#34495e")
+    ("midnight-blue"   . "#2c3e50")
+
+    ("turquoise"       . "#1abc9c")
+    ("green-sea"       . "#16a085")
+
+    ("emerald"         . "#2ecc71")
+    ("nephritis"       . "#27ae60")
+
+    ("peter-river"     . "#2492db")
+    ("belize-hole"     . "#0a74b9")
+
+    ("amethyst"        . "#9b59b6")
+    ("wisteria"        . "#8e44ad")
+
+    ("sun-flower"      . "#f1c40f")
+    ("orange"          . "#d98c10")
+
+    ("carrot"          . "#e67e22")
+    ("pumpkin"         . "#d35400")
+
+    ("alizarin"        . "#e74c3c")
+    ("pomegranate"     . "#c0392b"))
+*/
+
 /* Jekyll Bootstrap Colors */
-h1, h2, h3, h4 {
-  color: #f22430;
+
+
+code {
+    font-family: "Dejavu Sans Mono", monospace;
+    color: #8e44ad;
+    /* color: #e74c3c; */
+    background-color: #dfe4ea;
 }
-#footer {
-  background-color: #fdcd60;
+
+h1, h2, h3, h4 {
+    font-family: "Dejavu Sans", "Helvetica Neue", sans;
+    color: #1abc9c;
+}
+.resizing-img {
+    height: auto;
+    max-width: 100%;
+}
+
+#about-icon {
+    width: 80px;
+    text-decoration: none;
+}
+
+a {
+    color: #2492db;
 }
 
 body {
+    font-family: "Dejavu Sans", "Helvetica Neue", sans;
     background-color: #ecf0f1;
+    font-size: 20px;
+}
+
+
+.navbar-default .navbar-brand {
+    color: #e74c3c;
+    color: #e67e22;
+    padding: 15px 0px 15px 0px;
+}
+    
+.navbar{
+    max-width: 45em;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 @media(min-width:768px)
-{.container {
-    width: 60em;
-    }}
+{
+    .container {
+        /* width: 45em; */
+        max-width:45em;
+    }
+    .navbar-nav{
+        float: right
+    }
+}
 
 pre {
     /* darktooth */
     /* color: #FDF4C1; */
     /* background-color: #282828; */
 
+    font-family: "Dejavu Sans Mono", monospace;
     /* flat-ui */
     color: black;
     background-color: #ecf0f1;
@@ -42,8 +117,6 @@ pre {
     max-width: 60em;
     /* margin-left: auto; */
     /* margin-right: auto; */
-
-
 }
 
 

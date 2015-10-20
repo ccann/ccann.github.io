@@ -4,7 +4,7 @@
  <title>Cody Codes</title>
  <link href="http://ccann.github.io/atom.xml" rel="self"/>
  <link href="http://ccann.github.io"/>
- <updated>2015-10-19T17:53:01-04:00</updated>
+ <updated>2015-10-20T14:54:45-04:00</updated>
  <id>http://ccann.github.io</id>
  <author>
    <name>Cody Canning</name>
@@ -22,10 +22,10 @@
 &lt;/p&gt;
 
 
-&lt;figure id=&quot;orgparagraph1&quot;&gt;
-&lt;p&gt;&lt;img src=&quot;./cider.png&quot; alt=&quot;cider.png&quot;&gt;
-&lt;/p&gt;
-&lt;/figure&gt;
+&lt;br&gt;
+&lt;image src=&quot;/assets/cider.png&quot; class=&quot;resizing-img&quot; style=&quot;padding: 15px;&quot;/&gt;
+&lt;br&gt;&lt;br&gt;
+
 
 &lt;p&gt;
 CIDER isss awesome and provides a lot of really useful utilities for working with
@@ -40,41 +40,41 @@ workflow below in hopes that it provides a nice starting point.
 &lt;div class=&quot;outline-text-2&quot; id=&quot;text-orgheadline1&quot;&gt;
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-elisp&quot;&gt;&lt;span style=&quot;color: #34495e;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;clojure-mode&lt;/span&gt;
+&lt;pre class=&quot;src src-elisp&quot;&gt;(&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;clojure-mode&lt;/span&gt;
   &lt;span style=&quot;color: #16a085;&quot;&gt;:ensure&lt;/span&gt; t
-  &lt;span style=&quot;color: #16a085;&quot;&gt;:mode&lt;/span&gt; &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #2ecc71;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;\\.clj\\&#39;&quot;&lt;/span&gt; . clojure-mode&lt;span style=&quot;color: #2ecc71;&quot;&gt;)&lt;/span&gt;
-         &lt;span style=&quot;color: #2ecc71;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;\\.edn\\&#39;&quot;&lt;/span&gt; . clojure-mode&lt;span style=&quot;color: #2ecc71;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:mode&lt;/span&gt; ((&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;\\.clj\\&#39;&quot;&lt;/span&gt; . clojure-mode)
+         (&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;\\.edn\\&#39;&quot;&lt;/span&gt; . clojure-mode))
   &lt;span style=&quot;color: #16a085;&quot;&gt;:init&lt;/span&gt;
-  &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;setq cljr-suppress-middleware-warnings t&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;
-  &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;add-hook &#39;clojure-mode-hook #&#39;yas-minor-mode&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;
-  &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;add-hook &#39;clojure-mode-hook #&#39;linum-mode&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;
-  &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;add-hook &#39;clojure-mode-hook #&#39;subword-mode&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;
-  &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;add-hook &#39;clojure-mode-hook #&#39;smartparens-mode&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;
-  &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;add-hook &#39;clojure-mode-hook #&#39;rainbow-delimiters-mode&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;
-  &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;add-hook &#39;clojure-mode-hook #&#39;eldoc-mode&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;
-  &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;add-hook &#39;clojure-mode-hook #&#39;idle-highlight-mode&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;
-  &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;slamhound&lt;/span&gt; &lt;span style=&quot;color: #16a085;&quot;&gt;:defer&lt;/span&gt; t &lt;span style=&quot;color: #16a085;&quot;&gt;:ensure&lt;/span&gt; t&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;
-  &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;clj-refactor&lt;/span&gt;
+  (setq cljr-suppress-middleware-warnings t)
+  (add-hook &#39;clojure-mode-hook #&#39;yas-minor-mode)
+  (add-hook &#39;clojure-mode-hook #&#39;linum-mode)
+  (add-hook &#39;clojure-mode-hook #&#39;subword-mode)
+  (add-hook &#39;clojure-mode-hook #&#39;smartparens-mode)
+  (add-hook &#39;clojure-mode-hook #&#39;rainbow-delimiters-mode)
+  (add-hook &#39;clojure-mode-hook #&#39;eldoc-mode)
+  (add-hook &#39;clojure-mode-hook #&#39;idle-highlight-mode)
+  (&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;slamhound&lt;/span&gt; &lt;span style=&quot;color: #16a085;&quot;&gt;:defer&lt;/span&gt; t &lt;span style=&quot;color: #16a085;&quot;&gt;:ensure&lt;/span&gt; t)
+  (&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;clj-refactor&lt;/span&gt;
     &lt;span style=&quot;color: #16a085;&quot;&gt;:defer&lt;/span&gt; t
     &lt;span style=&quot;color: #16a085;&quot;&gt;:ensure&lt;/span&gt; t
     &lt;span style=&quot;color: #16a085;&quot;&gt;:diminish&lt;/span&gt; clj-refactor-mode
-    &lt;span style=&quot;color: #16a085;&quot;&gt;:config&lt;/span&gt; &lt;span style=&quot;color: #2ecc71;&quot;&gt;(&lt;/span&gt;cljr-add-keybindings-with-prefix &lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;C-c C-m&quot;&lt;/span&gt;&lt;span style=&quot;color: #2ecc71;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;  
-  &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;cider-eval-sexp-fu&lt;/span&gt; &lt;span style=&quot;color: #16a085;&quot;&gt;:defer&lt;/span&gt; t &lt;span style=&quot;color: #16a085;&quot;&gt;:ensure&lt;/span&gt; t&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;
-  &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;cider&lt;/span&gt;
+    &lt;span style=&quot;color: #16a085;&quot;&gt;:config&lt;/span&gt; (cljr-add-keybindings-with-prefix &lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;C-c C-m&quot;&lt;/span&gt;))  
+  (&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;cider-eval-sexp-fu&lt;/span&gt; &lt;span style=&quot;color: #16a085;&quot;&gt;:defer&lt;/span&gt; t &lt;span style=&quot;color: #16a085;&quot;&gt;:ensure&lt;/span&gt; t)
+  (&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;cider&lt;/span&gt;
     &lt;span style=&quot;color: #16a085;&quot;&gt;:ensure&lt;/span&gt; t
     &lt;span style=&quot;color: #16a085;&quot;&gt;:defer&lt;/span&gt; t
     &lt;span style=&quot;color: #16a085;&quot;&gt;:init&lt;/span&gt;
-    &lt;span style=&quot;color: #2ecc71;&quot;&gt;(&lt;/span&gt;add-hook &#39;cider-mode-hook #&#39;clj-refactor-mode&lt;span style=&quot;color: #2ecc71;&quot;&gt;)&lt;/span&gt;
+    (add-hook &#39;cider-mode-hook #&#39;clj-refactor-mode)
     &lt;span style=&quot;color: #16a085;&quot;&gt;:diminish&lt;/span&gt; subword-mode
     &lt;span style=&quot;color: #16a085;&quot;&gt;:config&lt;/span&gt;
-    &lt;span style=&quot;color: #2ecc71;&quot;&gt;(&lt;/span&gt;setq nrepl-log-messages t                   &lt;span style=&quot;color: #95a5a6;&quot;&gt;; &lt;/span&gt;&lt;span style=&quot;color: #7f8c8d;&quot;&gt;log communication with the nREPL server&lt;/span&gt;
+    (setq nrepl-log-messages t                   &lt;span style=&quot;color: #95a5a6;&quot;&gt;; &lt;/span&gt;&lt;span style=&quot;color: #7f8c8d;&quot;&gt;log communication with the nREPL server&lt;/span&gt;
           cider-repl-display-in-current-window t 
           cider-repl-use-clojure-font-lock t
           cider-prompt-save-file-on-load nil
-          cider-font-lock-dynamically &#39;&lt;span style=&quot;color: #2492db;&quot;&gt;(&lt;/span&gt;macro core function var&lt;span style=&quot;color: #2492db;&quot;&gt;)&lt;/span&gt;
+          cider-font-lock-dynamically &#39;(macro core function var)
           nrepl-hide-special-buffers t            &lt;span style=&quot;color: #95a5a6;&quot;&gt;; &lt;/span&gt;&lt;span style=&quot;color: #7f8c8d;&quot;&gt;hide *nrepl-connection* and *nrepl-server*&lt;/span&gt;
-          cider-ovelays-use-font-lock t&lt;span style=&quot;color: #2ecc71;&quot;&gt;)&lt;/span&gt;
-    &lt;span style=&quot;color: #2ecc71;&quot;&gt;(&lt;/span&gt;cider-repl-toggle-pretty-printing&lt;span style=&quot;color: #2ecc71;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: #34495e;&quot;&gt;)&lt;/span&gt;
+          cider-ovelays-use-font-lock t)
+    (cider-repl-toggle-pretty-printing)))
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
