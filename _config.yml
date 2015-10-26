@@ -8,8 +8,8 @@ highlighter: pygments
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : Cody Codes
-tagline: blah tagline blah
+title : Clojure At Sea
+tagline:
 author :
   name : Cody Canning
   email : cocanning11@gmail.com
@@ -70,9 +70,9 @@ JB :
   # Some JB helpers refer to these paths; change them here if needed.
   #
   archive_path: /archive.html
-  categories_path : /categories.html
+  # categories_path : /categories.html
   tags_path : /tags.html
-  atom_path : /atom.xml
+  # atom_path : /atom.xml
   rss_path : /rss.xml
 
   # Settings for comments helper
@@ -100,7 +100,7 @@ JB :
   # Set 'provider' to false to turn analytics off globally.
   #        
   analytics :
-    provider : false
+    provider : google
     gauges :
         site_id : 'SITE ID'
     google : 

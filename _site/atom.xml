@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
  
- <title>Cody Codes</title>
- <link href="http://ccann.github.io/atom.xml" rel="self"/>
+ <title>Clojure At Sea</title>
+ <link href="http://ccann.github.io" rel="self"/>
  <link href="http://ccann.github.io"/>
- <updated>2015-10-20T17:24:47-04:00</updated>
+ <updated>2015-10-26T14:08:13-04:00</updated>
  <id>http://ccann.github.io</id>
  <author>
    <name>Cody Canning</name>
