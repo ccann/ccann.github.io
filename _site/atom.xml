@@ -4,7 +4,7 @@
  <title>Clojure At Sea</title>
  <link href="http://ccann.github.io" rel="self"/>
  <link href="http://ccann.github.io"/>
- <updated>2015-11-05T17:20:49-05:00</updated>
+ <updated>2015-11-05T17:23:09-05:00</updated>
  <id>http://ccann.github.io</id>
  <author>
    <name>Cody Canning</name>
@@ -244,7 +244,7 @@ modes (some referenced above). Enjoy!:
 &lt;/div&gt;
 
 &lt;p&gt;
-Up next I&#39;ll quickly cover my &lt;code&gt;CIDER&lt;/code&gt; workflow&amp;#x2026;
+Up next I&#39;ll quickly cover a digestible subset of &lt;code&gt;CIDER&lt;/code&gt; commands&amp;#x2026;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;

@@ -5,8 +5,8 @@
         <description>Clojure At Sea - Cody Canning</description>
         <link>http://ccann.github.io</link>
         <atom:link href="http://ccann.github.io/rss.xml" rel="self" type="application/rss+xml" />
-        <lastBuildDate>Thu, 05 Nov 2015 17:20:49 -0500</lastBuildDate>
-        <pubDate>Thu, 05 Nov 2015 17:20:49 -0500</pubDate>
+        <lastBuildDate>Thu, 05 Nov 2015 17:23:09 -0500</lastBuildDate>
+        <pubDate>Thu, 05 Nov 2015 17:23:09 -0500</pubDate>
         <ttl>60</ttl>
 
 
@@ -239,7 +239,7 @@ modes (some referenced above). Enjoy!:
 &lt;/div&gt;
 
 &lt;p&gt;
-Up next I&#39;ll quickly cover my &lt;code&gt;CIDER&lt;/code&gt; workflow&amp;#x2026;
+Up next I&#39;ll quickly cover a digestible subset of &lt;code&gt;CIDER&lt;/code&gt; commands&amp;#x2026;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
