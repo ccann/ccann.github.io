@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>CIDER Basics</title>
+    
+    <meta name="author" content="Cody Canning">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+    
+    <!-- Custom styles -->
+    <link href="/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images
+      <link rel="shortcut icon" href="images/favicon.ico">
+      <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    -->
+
+    <!-- atom & rss feed -->
+    <link href="" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Clojure At Sea</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+      <div class="container">
+        
+<div class="page-header">
+  <h1>CIDER Basics </h1>
+</div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>05 November 2015</span>
+    </div>
+    <div class="content">
+      <p>
+When I first started using CIDER I was intimidated by the block of 41 <code>cider-mode</code> and 25
+<code>cider-repl-mode</code> interactive commands (to be fair, there's a lot of overlap between the
+two). Luckily you only need a small subset of these commands at your fingertips to be very
+productive:
+</p>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">REPLs and Namespaces</h2>
+<div class="outline-text-2" id="text-orgheadline1">
+<p>
+Open a project file (created with Leiningen or Boot) and in that buffer <code>C-c M-j</code> to launch an
+nREPL server and corresponding REPL client. This client will be associated with your project. You
+can see the nREPL server in the mode line:
+</p>
+
+<image src="/assets/mode-line-jack-in.png" class="resizing-img" style="padding: 15px;"/>
+<br>
+
+<p>
+You're done with your REPL and you want to quit: <code>C-c C-q</code>. This is one of those commands I wish
+I'd seen earlier. I spent so much time killing nREPL buffers manually.
+</p>
+
+<p>
+From your clojure buffer you can use <code>C-c C-n</code> to switch to this namespace in the REPL. <code>C-c
+C-z</code> actually switches to the associated REPL buffer (and back!).
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">Evaluating Functions</h2>
+<div class="outline-text-2" id="text-orgheadline2">
+<p>
+Load your current buffer with <code>C-c C-k</code>. You can do form evaluation a few different ways, here are
+the basics:
+</p>
+
+<ul class="org-ul">
+<li>Eval the form <i>to the left</i> of the point (cursor) and show the result inline with <code>C-c C-e</code>:</li>
+</ul>
+
+<image src="/assets/eval-last-sexp.png" class="resizing-img" style="padding: 15px;"/>
+<br>
+
+<ul class="org-ul">
+<li>Eval the <i>top-level</i> form at point and show the result inline with <code>C-c C-c</code>:</li>
+</ul>
+
+<image src="/assets/eval-top-level-sexp.png" class="resizing-img" style="padding: 15px;"/>
+<br>
+
+<ul class="org-ul">
+<li><b>Bonus</b>: Try <code>C-c C-p</code> and <code>C-c C-f</code> for pretty-printed popup buffer versions of the previous two
+evals, respecively. Useful for copying output.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">Other Useful Tools</h2>
+<div class="outline-text-2" id="text-orgheadline3">
+<p>
+A few other basic but high impact functions include:
+</p>
+
+<ul class="org-ul">
+<li>Jump you to the definition of the symbol at point with <code>M-.</code>.</li>
+<li>See clojure docs for the symbol at point with <code>C-c C-d d</code> and java docs with <code>C-c C-d j</code>.</li>
+<li>In the REPL <code>C-c C-o</code> will remove the result of the previous evaluation, useful especially when
+you have a verbose output clogging up your workspace. With the prefix argument, <code>C-u</code>, it will
+remove all previous output.</li>
+</ul>
+</div>
+</div>
+
+    </div>
+
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#emacs-ref">emacs <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#cider-ref">cider <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#clojure-ref">clojure <span>2</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev"><a href="/2015/10/18/cider" title="A Basic CIDER Configuration with use-package">&laquo; Previous</a></li>
+    
+      <li><a href="/archive.html">Archive</a></li>
+    
+      <li class="next disabled"><a>Next &rarr;</a>
+    
+    </ul>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+    var disqus_developer = 1;
+    var disqus_shortname = 'jekyllbootstrap'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+
+    
+
+
+
+
+
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
+

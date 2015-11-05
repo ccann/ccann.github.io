@@ -5,10 +5,95 @@
         <description>Clojure At Sea - Cody Canning</description>
         <link>http://ccann.github.io</link>
         <atom:link href="http://ccann.github.io/rss.xml" rel="self" type="application/rss+xml" />
-        <lastBuildDate>Mon, 26 Oct 2015 14:13:09 -0400</lastBuildDate>
-        <pubDate>Mon, 26 Oct 2015 14:13:09 -0400</pubDate>
+        <lastBuildDate>Thu, 05 Nov 2015 17:16:06 -0500</lastBuildDate>
+        <pubDate>Thu, 05 Nov 2015 17:16:06 -0500</pubDate>
         <ttl>60</ttl>
 
+
+        <item>
+                <title>CIDER Basics</title>
+                <description>&lt;p&gt;
+When I first started using CIDER I was intimidated by the block of 41 &lt;code&gt;cider-mode&lt;/code&gt; and 25
+&lt;code&gt;cider-repl-mode&lt;/code&gt; interactive commands (to be fair, there&#39;s a lot of overlap between the
+two). Luckily you only need a small subset of these commands at your fingertips to be very
+productive:
+&lt;/p&gt;
+
+&lt;div id=&quot;outline-container-orgheadline1&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;orgheadline1&quot;&gt;REPLs and Namespaces&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-orgheadline1&quot;&gt;
+&lt;p&gt;
+Open a project file (created with Leiningen or Boot) and in that buffer &lt;code&gt;C-c M-j&lt;/code&gt; to launch an
+nREPL server and corresponding REPL client. This client will be associated with your project. You
+can see the nREPL server in the mode line:
+&lt;/p&gt;
+
+&lt;image src=&quot;/assets/mode-line-jack-in.png&quot; class=&quot;resizing-img&quot; style=&quot;padding: 15px;&quot;/&gt;
+&lt;br&gt;
+
+&lt;p&gt;
+You&#39;re done with your REPL and you want to quit: &lt;code&gt;C-c C-q&lt;/code&gt;. This is one of those commands I wish
+I&#39;d seen earlier. I spent so much time killing nREPL buffers manually.
+&lt;/p&gt;
+
+&lt;p&gt;
+From your clojure buffer you can use &lt;code&gt;C-c C-n&lt;/code&gt; to switch to this namespace in the REPL. &lt;code&gt;C-c
+C-z&lt;/code&gt; actually switches to the associated REPL buffer (and back!).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id=&quot;outline-container-orgheadline2&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;orgheadline2&quot;&gt;Evaluating Functions&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-orgheadline2&quot;&gt;
+&lt;p&gt;
+Load your current buffer with &lt;code&gt;C-c C-k&lt;/code&gt;. You can do form evaluation a few different ways, here are
+the basics:
+&lt;/p&gt;
+
+&lt;ul class=&quot;org-ul&quot;&gt;
+&lt;li&gt;Eval the form &lt;i&gt;to the left&lt;/i&gt; of the point (cursor) and show the result inline with &lt;code&gt;C-c C-e&lt;/code&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;image src=&quot;/assets/eval-last-sexp.png&quot; class=&quot;resizing-img&quot; style=&quot;padding: 15px;&quot;/&gt;
+&lt;br&gt;
+
+&lt;ul class=&quot;org-ul&quot;&gt;
+&lt;li&gt;Eval the &lt;i&gt;top-level&lt;/i&gt; form at point and show the result inline with &lt;code&gt;C-c C-c&lt;/code&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;image src=&quot;/assets/eval-top-level-sexp.png&quot; class=&quot;resizing-img&quot; style=&quot;padding: 15px;&quot;/&gt;
+&lt;br&gt;
+
+&lt;ul class=&quot;org-ul&quot;&gt;
+&lt;li&gt;&lt;b&gt;Bonus&lt;/b&gt;: Try &lt;code&gt;C-c C-p&lt;/code&gt; and &lt;code&gt;C-c C-f&lt;/code&gt; for pretty-printed popup buffer versions of the previous two
+evals, respecively. Useful for copying output.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-orgheadline3&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;orgheadline3&quot;&gt;Other Useful Tools&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-orgheadline3&quot;&gt;
+&lt;p&gt;
+A few other basic but high impact functions include:
+&lt;/p&gt;
+
+&lt;ul class=&quot;org-ul&quot;&gt;
+&lt;li&gt;Jump you to the definition of the symbol at point with &lt;code&gt;M-.&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;See clojure docs for the symbol at point with &lt;code&gt;C-c C-d d&lt;/code&gt; and java docs with &lt;code&gt;C-c C-d j&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;In the REPL &lt;code&gt;C-c C-o&lt;/code&gt; will remove the result of the previous evaluation, useful especially when
+you have a verbose output clogging up your workspace. With the prefix argument, &lt;code&gt;C-u&lt;/code&gt;, it will
+remove all previous output.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+                <link>http://ccann.github.io/2015/11/05/cider-workflow</link>
+                <guid>http://ccann.github.io/2015/11/05/cider-workflow</guid>
+                <pubDate>Thu, 05 Nov 2015 00:00:00 -0500</pubDate>
+        </item>
 
         <item>
                 <title>A Basic CIDER Configuration with use-package</title>

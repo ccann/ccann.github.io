@@ -1,0 +1,83 @@
+---
+layout: post
+title: CIDER Basics
+tags: emacs cider clojure
+---
+
+<p>
+When I first started using CIDER I was intimidated by the block of 41 <code>cider-mode</code> and 25
+<code>cider-repl-mode</code> interactive commands (to be fair, there's a lot of overlap between the
+two). Luckily you only need a small subset of these commands at your fingertips to be very
+productive:
+</p>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">REPLs and Namespaces</h2>
+<div class="outline-text-2" id="text-orgheadline1">
+<p>
+Open a project file (created with Leiningen or Boot) and in that buffer <code>C-c M-j</code> to launch an
+nREPL server and corresponding REPL client. This client will be associated with your project. You
+can see the nREPL server in the mode line:
+</p>
+
+<image src="/assets/mode-line-jack-in.png" class="resizing-img" style="padding: 15px;"/>
+<br>
+
+<p>
+You're done with your REPL and you want to quit: <code>C-c C-q</code>. This is one of those commands I wish
+I'd seen earlier. I spent so much time killing nREPL buffers manually.
+</p>
+
+<p>
+From your clojure buffer you can use <code>C-c C-n</code> to switch to this namespace in the REPL. <code>C-c
+C-z</code> actually switches to the associated REPL buffer (and back!).
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">Evaluating Functions</h2>
+<div class="outline-text-2" id="text-orgheadline2">
+<p>
+Load your current buffer with <code>C-c C-k</code>. You can do form evaluation a few different ways, here are
+the basics:
+</p>
+
+<ul class="org-ul">
+<li>Eval the form <i>to the left</i> of the point (cursor) and show the result inline with <code>C-c C-e</code>:</li>
+</ul>
+
+<image src="/assets/eval-last-sexp.png" class="resizing-img" style="padding: 15px;"/>
+<br>
+
+<ul class="org-ul">
+<li>Eval the <i>top-level</i> form at point and show the result inline with <code>C-c C-c</code>:</li>
+</ul>
+
+<image src="/assets/eval-top-level-sexp.png" class="resizing-img" style="padding: 15px;"/>
+<br>
+
+<ul class="org-ul">
+<li><b>Bonus</b>: Try <code>C-c C-p</code> and <code>C-c C-f</code> for pretty-printed popup buffer versions of the previous two
+evals, respecively. Useful for copying output.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">Other Useful Tools</h2>
+<div class="outline-text-2" id="text-orgheadline3">
+<p>
+A few other basic but high impact functions include:
+</p>
+
+<ul class="org-ul">
+<li>Jump you to the definition of the symbol at point with <code>M-.</code>.</li>
+<li>See clojure docs for the symbol at point with <code>C-c C-d d</code> and java docs with <code>C-c C-d j</code>.</li>
+<li>In the REPL <code>C-c C-o</code> will remove the result of the previous evaluation, useful especially when
+you have a verbose output clogging up your workspace. With the prefix argument, <code>C-u</code>, it will
+remove all previous output.</li>
+</ul>
+</div>
+</div>
