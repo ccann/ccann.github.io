@@ -6,4 +6,5 @@ http://ccann.github.io/rss.xml
 http://ccann.github.io/sitemap.txt
 http://ccann.github.io/tags.html
 
+http://ccann.github.io/2015/11/05/cider-workflow
 http://ccann.github.io/2015/10/18/cider

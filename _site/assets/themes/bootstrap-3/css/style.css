@@ -60,9 +60,23 @@ code {
 
 h1, h2, h3, h4 {
     font-family: "Dejavu Sans", "Helvetica Neue", sans;
-    /* color: #1abc9c; */
-    color: black;
 }
+
+h1 {
+   color: #2c3e50;
+}
+
+h2 {
+    color: #c0392b;
+    padding-top: 15px;
+}
+
+h3 {
+    color: #1abc9c;
+}
+
+
+
 
 .date{
     color: #7f8c8d;
@@ -92,8 +106,7 @@ body {
 
 
 .navbar-default .navbar-brand {
-    color: #e74c3c;
-    color: #e67e22;
+    color: #16a085;
     padding: 15px 0px 15px 0px;
 }
     

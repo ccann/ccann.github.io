@@ -38,7 +38,7 @@
     -->
 
     <!-- atom & rss feed -->
-    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
     <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
 
   </head>
@@ -54,7 +54,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">Cody Codes</a>
+          <a class="navbar-brand" href="/">Clojure At Sea</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -145,18 +145,18 @@ configuring packages in emacs. Let's use it to configure <code>clojure-mode</cod
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(<span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">clojure-mode</span>
+<pre class="src src-elisp"><span style="color: #34495e;">(</span><span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">clojure-mode</span>
   <span style="color: #16a085;">:ensure</span> t
-  <span style="color: #16a085;">:mode</span> ((<span style="color: #0a74b9;">"\\.clj\\'"</span> . clojure-mode)
-         (<span style="color: #0a74b9;">"\\.edn\\'"</span> . clojure-mode))
+  <span style="color: #16a085;">:mode</span> <span style="color: #1abc9c;">(</span><span style="color: #2ecc71;">(</span><span style="color: #0a74b9;">"\\.clj\\'"</span> . clojure-mode<span style="color: #2ecc71;">)</span>
+         <span style="color: #2ecc71;">(</span><span style="color: #0a74b9;">"\\.edn\\'"</span> . clojure-mode<span style="color: #2ecc71;">)</span><span style="color: #1abc9c;">)</span>
   <span style="color: #16a085;">:init</span>
-  (add-hook 'clojure-mode-hook #'yas-minor-mode)         
-  (add-hook 'clojure-mode-hook #'linum-mode)             
-  (add-hook 'clojure-mode-hook #'subword-mode)           
-  (add-hook 'clojure-mode-hook #'smartparens-mode)       
-  (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
-  (add-hook 'clojure-mode-hook #'eldoc-mode)             
-  (add-hook 'clojure-mode-hook #'idle-highlight-mode))
+  <span style="color: #1abc9c;">(</span>add-hook 'clojure-mode-hook #'yas-minor-mode<span style="color: #1abc9c;">)</span>         
+  <span style="color: #1abc9c;">(</span>add-hook 'clojure-mode-hook #'linum-mode<span style="color: #1abc9c;">)</span>             
+  <span style="color: #1abc9c;">(</span>add-hook 'clojure-mode-hook #'subword-mode<span style="color: #1abc9c;">)</span>           
+  <span style="color: #1abc9c;">(</span>add-hook 'clojure-mode-hook #'smartparens-mode<span style="color: #1abc9c;">)</span>       
+  <span style="color: #1abc9c;">(</span>add-hook 'clojure-mode-hook #'rainbow-delimiters-mode<span style="color: #1abc9c;">)</span>
+  <span style="color: #1abc9c;">(</span>add-hook 'clojure-mode-hook #'eldoc-mode<span style="color: #1abc9c;">)</span>             
+  <span style="color: #1abc9c;">(</span>add-hook 'clojure-mode-hook #'idle-highlight-mode<span style="color: #1abc9c;">)</span><span style="color: #34495e;">)</span>
 </pre>
 </div>
 
@@ -178,20 +178,20 @@ Now let's configure <code>cider</code>:
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(<span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">cider</span>
+<pre class="src src-elisp"><span style="color: #34495e;">(</span><span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">cider</span>
   <span style="color: #16a085;">:ensure</span> t
   <span style="color: #16a085;">:defer</span> t
-  <span style="color: #16a085;">:init</span> (add-hook 'cider-mode-hook #'clj-refactor-mode)
+  <span style="color: #16a085;">:init</span> <span style="color: #1abc9c;">(</span>add-hook 'cider-mode-hook #'clj-refactor-mode<span style="color: #1abc9c;">)</span>
   <span style="color: #16a085;">:diminish</span> subword-mode
   <span style="color: #16a085;">:config</span>
-  (setq nrepl-log-messages t                  
+  <span style="color: #1abc9c;">(</span>setq nrepl-log-messages t                  
         cider-repl-display-in-current-window t
         cider-repl-use-clojure-font-lock t    
         cider-prompt-save-file-on-load 'always-save
-        cider-font-lock-dynamically '(macro core function var)
+        cider-font-lock-dynamically '<span style="color: #2ecc71;">(</span>macro core function var<span style="color: #2ecc71;">)</span>
         nrepl-hide-special-buffers t            
-        cider-overlays-use-font-lock t)         
-  (cider-repl-toggle-pretty-printing))
+        cider-overlays-use-font-lock t<span style="color: #1abc9c;">)</span>         
+  <span style="color: #1abc9c;">(</span>cider-repl-toggle-pretty-printing<span style="color: #1abc9c;">)</span><span style="color: #34495e;">)</span>
 </pre>
 </div>
 
@@ -230,36 +230,36 @@ modes (some referenced above). Enjoy!:
 
 <div class="org-src-container">
 
-<pre class="src src-elisp">(<span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">cider-eval-sexp-fu</span>
-  <span style="color: #16a085;">:defer</span> t)
+<pre class="src src-elisp"><span style="color: #34495e;">(</span><span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">cider-eval-sexp-fu</span>
+  <span style="color: #16a085;">:defer</span> t<span style="color: #34495e;">)</span>
 
-(<span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">clj-refactor</span>
+<span style="color: #34495e;">(</span><span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">clj-refactor</span>
   <span style="color: #16a085;">:defer</span> t
   <span style="color: #16a085;">:ensure</span> t
   <span style="color: #16a085;">:diminish</span> clj-refactor-mode
-  <span style="color: #16a085;">:config</span> (cljr-add-keybindings-with-prefix <span style="color: #0a74b9;">"C-c C-m"</span>))
+  <span style="color: #16a085;">:config</span> <span style="color: #1abc9c;">(</span>cljr-add-keybindings-with-prefix <span style="color: #0a74b9;">"C-c C-m"</span><span style="color: #1abc9c;">)</span><span style="color: #34495e;">)</span>
 
-(<span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">smartparens</span>
+<span style="color: #34495e;">(</span><span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">smartparens</span>
   <span style="color: #16a085;">:defer</span> t
   <span style="color: #16a085;">:ensure</span> t
   <span style="color: #16a085;">:diminish</span> smartparens-mode
   <span style="color: #16a085;">:init</span>
-  (setq sp-override-key-bindings
-        '((<span style="color: #0a74b9;">"C-&lt;right&gt;"</span> . nil)
-          (<span style="color: #0a74b9;">"C-&lt;left&gt;"</span> . nil)
-          (<span style="color: #0a74b9;">"C-)"</span> . sp-forward-slurp-sexp)
-          (<span style="color: #0a74b9;">"M-&lt;backspace&gt;"</span> . nil)
-          (<span style="color: #0a74b9;">"C-("</span> . sp-forward-barf-sexp)))
+  <span style="color: #1abc9c;">(</span>setq sp-override-key-bindings
+        '<span style="color: #2ecc71;">(</span><span style="color: #2492db;">(</span><span style="color: #0a74b9;">"C-&lt;right&gt;"</span> . nil<span style="color: #2492db;">)</span>
+          <span style="color: #2492db;">(</span><span style="color: #0a74b9;">"C-&lt;left&gt;"</span> . nil<span style="color: #2492db;">)</span>
+          <span style="color: #2492db;">(</span><span style="color: #0a74b9;">"C-)"</span> . sp-forward-slurp-sexp<span style="color: #2492db;">)</span>
+          <span style="color: #2492db;">(</span><span style="color: #0a74b9;">"M-&lt;backspace&gt;"</span> . nil<span style="color: #2492db;">)</span>
+          <span style="color: #2492db;">(</span><span style="color: #0a74b9;">"C-("</span> . sp-forward-barf-sexp<span style="color: #2492db;">)</span><span style="color: #2ecc71;">)</span><span style="color: #1abc9c;">)</span>
   <span style="color: #16a085;">:config</span>
-  (<span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">smartparens-config</span>)
-  (sp-use-smartparens-bindings)
-  (sp--update-override-key-bindings)
-  <span style="color: #16a085;">:commands</span> (smartparens-mode show-smartparens-mode))
+  <span style="color: #1abc9c;">(</span><span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">smartparens-config</span><span style="color: #1abc9c;">)</span>
+  <span style="color: #1abc9c;">(</span>sp-use-smartparens-bindings<span style="color: #1abc9c;">)</span>
+  <span style="color: #1abc9c;">(</span>sp--update-override-key-bindings<span style="color: #1abc9c;">)</span>
+  <span style="color: #16a085;">:commands</span> <span style="color: #1abc9c;">(</span>smartparens-mode show-smartparens-mode<span style="color: #1abc9c;">)</span><span style="color: #34495e;">)</span>
 </pre>
 </div>
 
 <p>
-Up next I'll quickly cover my <code>CIDER</code> workflow&#x2026;
+Up next I'll quickly cover a digestible subset of <code>CIDER</code> commands&#x2026;
 </p>
 </div>
 </div>
@@ -277,11 +277,11 @@ Up next I'll quickly cover my <code>CIDER</code> workflow&#x2026;
 
   
      
-    	<li><a href="/tags.html#emacs-ref">emacs <span>1</span></a></li>
+    	<li><a href="/tags.html#emacs-ref">emacs <span>2</span></a></li>
      
-    	<li><a href="/tags.html#cider-ref">cider <span>1</span></a></li>
+    	<li><a href="/tags.html#cider-ref">cider <span>2</span></a></li>
      
-    	<li><a href="/tags.html#clojure-ref">clojure <span>1</span></a></li>
+    	<li><a href="/tags.html#clojure-ref">clojure <span>2</span></a></li>
     
   
 
@@ -297,7 +297,7 @@ Up next I'll quickly cover my <code>CIDER</code> workflow&#x2026;
     
       <li><a href="/archive.html">Archive</a></li>
     
-      <li class="next disabled"><a>Next &rarr;</a>
+      <li class="next"><a href="/2015/11/05/cider-workflow" title="Hot CIDER Commands">Next &raquo;</a></li>
     
     </ul>
     <hr>

@@ -1,16 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
  
- <title>Cody Codes</title>
- <link href="http://ccann.github.io/atom.xml" rel="self"/>
+ <title>Clojure At Sea</title>
+ <link href="http://ccann.github.io" rel="self"/>
  <link href="http://ccann.github.io"/>
- <updated>2015-10-25T18:07:27-04:00</updated>
+ <updated>2015-11-05T17:23:09-05:00</updated>
  <id>http://ccann.github.io</id>
  <author>
    <name>Cody Canning</name>
    <email>cocanning11@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Hot CIDER Commands</title>
+   <link href="http://ccann.github.io/2015/11/05/cider-workflow"/>
+   <updated>2015-11-05T00:00:00-05:00</updated>
+   <id>http://ccann.github.io/2015/11/05/cider-workflow</id>
+   <content type="html">&lt;p&gt;
+When I first started using CIDER I was intimidated by the block of 41 &lt;code&gt;cider-mode&lt;/code&gt; and 25
+&lt;code&gt;cider-repl-mode&lt;/code&gt; interactive commands (to be fair, there&#39;s a lot of overlap between the
+two). Luckily you only need a small subset of these commands at your fingertips to be very
+productive:
+&lt;/p&gt;
+
+&lt;div id=&quot;outline-container-orgheadline1&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;orgheadline1&quot;&gt;REPLs and Namespaces&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-orgheadline1&quot;&gt;
+&lt;p&gt;
+Open a project file (created with Leiningen or Boot) and in that buffer &lt;code&gt;C-c M-j&lt;/code&gt; to launch an
+nREPL server and corresponding REPL client. This client will be associated with your project. You
+can see the nREPL server in the mode line:
+&lt;/p&gt;
+
+&lt;image src=&quot;/assets/mode-line-jack-in.png&quot; class=&quot;resizing-img&quot; style=&quot;padding: 15px;&quot;/&gt;
+&lt;br&gt;
+
+&lt;p&gt;
+You&#39;re done with your REPL and you want to quit: &lt;code&gt;C-c C-q&lt;/code&gt;. This is one of those commands I wish
+I&#39;d seen earlier. I spent so much time killing nREPL buffers manually.
+&lt;/p&gt;
+
+&lt;p&gt;
+From your clojure buffer you can use &lt;code&gt;C-c C-n&lt;/code&gt; to switch to this namespace in the REPL. &lt;code&gt;C-c
+C-z&lt;/code&gt; actually switches to the associated REPL buffer (and back!).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id=&quot;outline-container-orgheadline2&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;orgheadline2&quot;&gt;Evaluating Functions&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-orgheadline2&quot;&gt;
+&lt;p&gt;
+Load your current buffer with &lt;code&gt;C-c C-k&lt;/code&gt;. You can do form evaluation a few different ways, here are
+the basics:
+&lt;/p&gt;
+
+&lt;ul class=&quot;org-ul&quot;&gt;
+&lt;li&gt;Eval the form &lt;i&gt;to the left&lt;/i&gt; of the point (cursor) and show the result inline with &lt;code&gt;C-c C-e&lt;/code&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;image src=&quot;/assets/eval-last-sexp.png&quot; class=&quot;resizing-img&quot; style=&quot;padding: 15px;&quot;/&gt;
+&lt;br&gt;
+
+&lt;ul class=&quot;org-ul&quot;&gt;
+&lt;li&gt;Eval the &lt;i&gt;top-level&lt;/i&gt; form at point and show the result inline with &lt;code&gt;C-c C-c&lt;/code&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;image src=&quot;/assets/eval-top-level-sexp.png&quot; class=&quot;resizing-img&quot; style=&quot;padding: 15px;&quot;/&gt;
+&lt;br&gt;
+
+&lt;ul class=&quot;org-ul&quot;&gt;
+&lt;li&gt;&lt;b&gt;Bonus&lt;/b&gt;: Try &lt;code&gt;C-c C-p&lt;/code&gt; and &lt;code&gt;C-c C-f&lt;/code&gt; for pretty-printed popup buffer versions of the previous two
+evals, respecively. Useful for copying output.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;outline-container-orgheadline3&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;orgheadline3&quot;&gt;Other Useful Tools&lt;/h2&gt;
+&lt;div class=&quot;outline-text-2&quot; id=&quot;text-orgheadline3&quot;&gt;
+&lt;p&gt;
+A few other basic but high impact functions include:
+&lt;/p&gt;
+
+&lt;ul class=&quot;org-ul&quot;&gt;
+&lt;li&gt;Jump you to the definition of the symbol at point with &lt;code&gt;M-.&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;See clojure docs for the symbol at point with &lt;code&gt;C-c C-d d&lt;/code&gt; and java docs with &lt;code&gt;C-c C-d j&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;In the REPL &lt;code&gt;C-c C-o&lt;/code&gt; will remove the result of the previous evaluation, useful especially when
+you have a verbose output clogging up your workspace. With the prefix argument, &lt;code&gt;C-u&lt;/code&gt;, it will
+remove all previous output.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content>
+ </entry>
  
  <entry>
    <title>A Basic CIDER Configuration with use-package</title>
@@ -45,18 +130,18 @@ configuring packages in emacs. Let&#39;s use it to configure &lt;code&gt;clojure
 
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-elisp&quot;&gt;(&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;clojure-mode&lt;/span&gt;
+&lt;pre class=&quot;src src-elisp&quot;&gt;&lt;span style=&quot;color: #34495e;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;clojure-mode&lt;/span&gt;
   &lt;span style=&quot;color: #16a085;&quot;&gt;:ensure&lt;/span&gt; t
-  &lt;span style=&quot;color: #16a085;&quot;&gt;:mode&lt;/span&gt; ((&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;\\.clj\\&#39;&quot;&lt;/span&gt; . clojure-mode)
-         (&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;\\.edn\\&#39;&quot;&lt;/span&gt; . clojure-mode))
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:mode&lt;/span&gt; &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #2ecc71;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;\\.clj\\&#39;&quot;&lt;/span&gt; . clojure-mode&lt;span style=&quot;color: #2ecc71;&quot;&gt;)&lt;/span&gt;
+         &lt;span style=&quot;color: #2ecc71;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;\\.edn\\&#39;&quot;&lt;/span&gt; . clojure-mode&lt;span style=&quot;color: #2ecc71;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;
   &lt;span style=&quot;color: #16a085;&quot;&gt;:init&lt;/span&gt;
-  (add-hook &#39;clojure-mode-hook #&#39;yas-minor-mode)         
-  (add-hook &#39;clojure-mode-hook #&#39;linum-mode)             
-  (add-hook &#39;clojure-mode-hook #&#39;subword-mode)           
-  (add-hook &#39;clojure-mode-hook #&#39;smartparens-mode)       
-  (add-hook &#39;clojure-mode-hook #&#39;rainbow-delimiters-mode)
-  (add-hook &#39;clojure-mode-hook #&#39;eldoc-mode)             
-  (add-hook &#39;clojure-mode-hook #&#39;idle-highlight-mode))
+  &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;add-hook &#39;clojure-mode-hook #&#39;yas-minor-mode&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;         
+  &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;add-hook &#39;clojure-mode-hook #&#39;linum-mode&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;             
+  &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;add-hook &#39;clojure-mode-hook #&#39;subword-mode&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;           
+  &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;add-hook &#39;clojure-mode-hook #&#39;smartparens-mode&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;       
+  &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;add-hook &#39;clojure-mode-hook #&#39;rainbow-delimiters-mode&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;
+  &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;add-hook &#39;clojure-mode-hook #&#39;eldoc-mode&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;             
+  &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;add-hook &#39;clojure-mode-hook #&#39;idle-highlight-mode&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: #34495e;&quot;&gt;)&lt;/span&gt;
 &lt;/pre&gt;
 &lt;/div&gt;
 
@@ -78,20 +163,20 @@ Now let&#39;s configure &lt;code&gt;cider&lt;/code&gt;:
 
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-elisp&quot;&gt;(&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;cider&lt;/span&gt;
+&lt;pre class=&quot;src src-elisp&quot;&gt;&lt;span style=&quot;color: #34495e;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;cider&lt;/span&gt;
   &lt;span style=&quot;color: #16a085;&quot;&gt;:ensure&lt;/span&gt; t
   &lt;span style=&quot;color: #16a085;&quot;&gt;:defer&lt;/span&gt; t
-  &lt;span style=&quot;color: #16a085;&quot;&gt;:init&lt;/span&gt; (add-hook &#39;cider-mode-hook #&#39;clj-refactor-mode)
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:init&lt;/span&gt; &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;add-hook &#39;cider-mode-hook #&#39;clj-refactor-mode&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;
   &lt;span style=&quot;color: #16a085;&quot;&gt;:diminish&lt;/span&gt; subword-mode
   &lt;span style=&quot;color: #16a085;&quot;&gt;:config&lt;/span&gt;
-  (setq nrepl-log-messages t                  
+  &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;setq nrepl-log-messages t                  
         cider-repl-display-in-current-window t
         cider-repl-use-clojure-font-lock t    
         cider-prompt-save-file-on-load &#39;always-save
-        cider-font-lock-dynamically &#39;(macro core function var)
+        cider-font-lock-dynamically &#39;&lt;span style=&quot;color: #2ecc71;&quot;&gt;(&lt;/span&gt;macro core function var&lt;span style=&quot;color: #2ecc71;&quot;&gt;)&lt;/span&gt;
         nrepl-hide-special-buffers t            
-        cider-overlays-use-font-lock t)         
-  (cider-repl-toggle-pretty-printing))
+        cider-overlays-use-font-lock t&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;         
+  &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;cider-repl-toggle-pretty-printing&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: #34495e;&quot;&gt;)&lt;/span&gt;
 &lt;/pre&gt;
 &lt;/div&gt;
 
@@ -130,36 +215,36 @@ modes (some referenced above). Enjoy!:
 
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-elisp&quot;&gt;(&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;cider-eval-sexp-fu&lt;/span&gt;
-  &lt;span style=&quot;color: #16a085;&quot;&gt;:defer&lt;/span&gt; t)
+&lt;pre class=&quot;src src-elisp&quot;&gt;&lt;span style=&quot;color: #34495e;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;cider-eval-sexp-fu&lt;/span&gt;
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:defer&lt;/span&gt; t&lt;span style=&quot;color: #34495e;&quot;&gt;)&lt;/span&gt;
 
-(&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;clj-refactor&lt;/span&gt;
+&lt;span style=&quot;color: #34495e;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;clj-refactor&lt;/span&gt;
   &lt;span style=&quot;color: #16a085;&quot;&gt;:defer&lt;/span&gt; t
   &lt;span style=&quot;color: #16a085;&quot;&gt;:ensure&lt;/span&gt; t
   &lt;span style=&quot;color: #16a085;&quot;&gt;:diminish&lt;/span&gt; clj-refactor-mode
-  &lt;span style=&quot;color: #16a085;&quot;&gt;:config&lt;/span&gt; (cljr-add-keybindings-with-prefix &lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;C-c C-m&quot;&lt;/span&gt;))
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:config&lt;/span&gt; &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;cljr-add-keybindings-with-prefix &lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;C-c C-m&quot;&lt;/span&gt;&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: #34495e;&quot;&gt;)&lt;/span&gt;
 
-(&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;smartparens&lt;/span&gt;
+&lt;span style=&quot;color: #34495e;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;smartparens&lt;/span&gt;
   &lt;span style=&quot;color: #16a085;&quot;&gt;:defer&lt;/span&gt; t
   &lt;span style=&quot;color: #16a085;&quot;&gt;:ensure&lt;/span&gt; t
   &lt;span style=&quot;color: #16a085;&quot;&gt;:diminish&lt;/span&gt; smartparens-mode
   &lt;span style=&quot;color: #16a085;&quot;&gt;:init&lt;/span&gt;
-  (setq sp-override-key-bindings
-        &#39;((&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;C-&amp;lt;right&amp;gt;&quot;&lt;/span&gt; . nil)
-          (&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;C-&amp;lt;left&amp;gt;&quot;&lt;/span&gt; . nil)
-          (&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;C-)&quot;&lt;/span&gt; . sp-forward-slurp-sexp)
-          (&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;M-&amp;lt;backspace&amp;gt;&quot;&lt;/span&gt; . nil)
-          (&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;C-(&quot;&lt;/span&gt; . sp-forward-barf-sexp)))
+  &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;setq sp-override-key-bindings
+        &#39;&lt;span style=&quot;color: #2ecc71;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #2492db;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;C-&amp;lt;right&amp;gt;&quot;&lt;/span&gt; . nil&lt;span style=&quot;color: #2492db;&quot;&gt;)&lt;/span&gt;
+          &lt;span style=&quot;color: #2492db;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;C-&amp;lt;left&amp;gt;&quot;&lt;/span&gt; . nil&lt;span style=&quot;color: #2492db;&quot;&gt;)&lt;/span&gt;
+          &lt;span style=&quot;color: #2492db;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;C-)&quot;&lt;/span&gt; . sp-forward-slurp-sexp&lt;span style=&quot;color: #2492db;&quot;&gt;)&lt;/span&gt;
+          &lt;span style=&quot;color: #2492db;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;M-&amp;lt;backspace&amp;gt;&quot;&lt;/span&gt; . nil&lt;span style=&quot;color: #2492db;&quot;&gt;)&lt;/span&gt;
+          &lt;span style=&quot;color: #2492db;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;C-(&quot;&lt;/span&gt; . sp-forward-barf-sexp&lt;span style=&quot;color: #2492db;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: #2ecc71;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;
   &lt;span style=&quot;color: #16a085;&quot;&gt;:config&lt;/span&gt;
-  (&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;smartparens-config&lt;/span&gt;)
-  (sp-use-smartparens-bindings)
-  (sp--update-override-key-bindings)
-  &lt;span style=&quot;color: #16a085;&quot;&gt;:commands&lt;/span&gt; (smartparens-mode show-smartparens-mode))
+  &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;smartparens-config&lt;/span&gt;&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;
+  &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;sp-use-smartparens-bindings&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;
+  &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;sp--update-override-key-bindings&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:commands&lt;/span&gt; &lt;span style=&quot;color: #1abc9c;&quot;&gt;(&lt;/span&gt;smartparens-mode show-smartparens-mode&lt;span style=&quot;color: #1abc9c;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color: #34495e;&quot;&gt;)&lt;/span&gt;
 &lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;
-Up next I&#39;ll quickly cover my &lt;code&gt;CIDER&lt;/code&gt; workflow&amp;#x2026;
+Up next I&#39;ll quickly cover a digestible subset of &lt;code&gt;CIDER&lt;/code&gt; commands&amp;#x2026;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
