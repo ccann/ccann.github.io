@@ -1,0 +1,21 @@
+---
+layout: post
+title: Printing to the Same Line in Python
+tags: python TIL
+---
+
+<p>
+Today I learned that Python has a bizarre syntax for printing to the same line:
+</p>
+
+<p>
+```python
+print('publish JSON to RabbitMQ exchange&#x2026;   '),
+publish<sub>json</sub>()
+print '[DONE]'
+```
+</p>
+
+<p>
+Yeah, that dangling comma. More [here](<a href="http://stackoverflow.com/questions/5598181/python-print-on-same-line">http://stackoverflow.com/questions/5598181/python-print-on-same-line</a>).
+</p>
