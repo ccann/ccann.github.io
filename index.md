@@ -9,7 +9,7 @@ Hey, I'm Cody.
 
 Look here for thoughts about **Clojure**, **Emacs**, and maybe even some **Python**.
 
-Right now I'm a *Data Science Engineer* at [weft.io](http://www.weft.io), a global
+Right now I'm *Lead Data Science Engineer* at [weft.io](http://www.weft.io), a global
 logistics data company in Cambridge, MA. In the past I've been a *Robot Software
 Engineer* at [Aldebaran](https://www.aldebaran.com/en) and a graduate student in
 the [Tufts University HRI lab](http://hrilab.tufts.edu/).
