@@ -6,22 +6,21 @@
 </description>
     <link>http://ccann.github.io/</link>
     <atom:link href="http://ccann.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 24 Apr 2016 17:41:56 -0400</pubDate>
-    <lastBuildDate>Sun, 24 Apr 2016 17:41:56 -0400</lastBuildDate>
+    <pubDate>Sun, 24 Apr 2016 17:54:58 -0400</pubDate>
+    <lastBuildDate>Sun, 24 Apr 2016 17:54:58 -0400</lastBuildDate>
     <generator>Jekyll v3.1.3</generator>
     
       <item>
-        <title>TIL Print to the Same Line in Python</title>
+        <title>Print to the Same Line in Python</title>
         <description>&lt;p&gt;
-Today I learned that Python has a sort of unexpected syntax for printing to the same
-line:
+TIL that Python has a sort of unexpected syntax for printing to the same line:
 &lt;/p&gt;
 
 &lt;div class=&quot;org-src-container&quot;&gt;
 
-&lt;pre class=&quot;src src-python&quot;&gt;&lt;span style=&quot;color: #DD6F48;&quot;&gt;print&lt;/span&gt;(&lt;span style=&quot;color: #528B8B;&quot;&gt;&#39;publish JSON to RabbitMQ exchange...   &#39;&lt;/span&gt;),
+&lt;pre class=&quot;src src-python&quot;&gt;&lt;span style=&quot;color: #d98c10;&quot;&gt;print&lt;/span&gt;(&lt;span style=&quot;color: #0a74b9;&quot;&gt;&#39;publish JSON to RabbitMQ exchange...   &#39;&lt;/span&gt;),
 publish_json()
-&lt;span style=&quot;color: #DD6F48;&quot;&gt;print&lt;/span&gt;(&lt;span style=&quot;color: #528B8B;&quot;&gt;&#39;[DONE]&#39;&lt;/span&gt;)
+&lt;span style=&quot;color: #d98c10;&quot;&gt;print&lt;/span&gt;(&lt;span style=&quot;color: #0a74b9;&quot;&gt;&#39;[DONE]&#39;&lt;/span&gt;)
 &lt;/pre&gt;
 &lt;/div&gt;
 
@@ -34,8 +33,6 @@ publish_json()
 &lt;p&gt;
 Yes, that dangling comma.
 &lt;/p&gt;
-
-
 
 &lt;p&gt;
 More &lt;a href=&quot;http://stackoverflow.com/questions/5598181/python-print-on-same-line&quot;&gt;here&lt;/a&gt;.
