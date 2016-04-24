@@ -1,0 +1,33 @@
+---
+layout: post
+title: TIL Print to the Same Line in Python
+---
+
+<p>
+Today I learned that Python has a sort of unexpected syntax for printing to the same
+line:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #DD6F48;">print</span>(<span style="color: #528B8B;">'publish JSON to RabbitMQ exchange...   '</span>),
+publish_json()
+<span style="color: #DD6F48;">print</span>(<span style="color: #528B8B;">'[DONE]'</span>)
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-shell">&gt;&gt;&gt; publish JSON to RabbitMQ exchange...    [DONE]
+</pre>
+</div>
+
+<p>
+Yes, that dangling comma.
+</p>
+
+
+
+<p>
+More <a href="http://stackoverflow.com/questions/5598181/python-print-on-same-line">here</a>.
+</p>
