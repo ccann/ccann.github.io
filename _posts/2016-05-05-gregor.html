@@ -1,0 +1,144 @@
+---
+layout: post
+title: Gregor
+---
+
+<p>
+<a href="https://github.com/weftio/gregor">Gregor</a> is an open-source Clojure interface to <a href="http://kafka.apache.org/">Apache Kafka</a>.
+</p>
+
+<p>
+We use Kafka at Weft as the messaging system that ties our microservices together. Many
+of those services are written in Clojure and target Kafka <code>0.9</code>. The Kafka API is well
+designed and easy to use &#x2013; leveraging Clojure's Java interop in this case is fairly
+straightforward, but we wanted something more idiomatic and consistent throughout our
+pipeline. Gregor was born out of that need.
+</p>
+
+<p>
+There are other Kafka libraries available for Clojure including <a href="https://github.com/pingles/clj-kafka"><code>clj-kafka</code></a> and
+<a href="https://github.com/gerritjvv/kafka-fast"><code>kafka-fast</code></a>. At this time of this writing <code>clj-kafka</code> targets Kafka <code>0.8</code> which was a
+non-starter for us. <code>kafka-fast</code> swaps out Zookeeper for Redis which wasn't quite what we
+wanted, either. Gregor strives only to be an idiomatic, lightweight set of functions that
+are easy to reason about and use in combination with Kafka's Java classes when
+necessary.
+</p>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">Consumer API</h2>
+<div class="outline-text-2" id="text-orgheadline1">
+<p>
+Here's a direct comparison of constructing a <code>KafkaConsumer</code> <a href="http://kafka.apache.org/090/javadoc/index.html?org/apache/kafka/clients/consumer/KafkaConsumer.html">using the Java API</a> and
+Gregor's Clojure API:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #2492db;">Properties</span> <span style="color: #8e44ad;">props</span> = <span style="color: #d98c10;">new</span> <span style="color: #2492db;">Properties</span>();
+props.put(<span style="color: #0a74b9;">"bootstrap.servers"</span>, <span style="color: #0a74b9;">"localhost:9092"</span>);
+props.put(<span style="color: #0a74b9;">"group.id"</span>, <span style="color: #0a74b9;">"test"</span>);
+props.put(<span style="color: #0a74b9;">"enable.auto.commit"</span>, <span style="color: #0a74b9;">"true"</span>);
+props.put(<span style="color: #0a74b9;">"auto.commit.interval.ms"</span>, <span style="color: #0a74b9;">"1000"</span>);
+props.put(<span style="color: #0a74b9;">"session.timeout.ms"</span>, <span style="color: #0a74b9;">"30000"</span>);
+props.put(<span style="color: #0a74b9;">"key.deserializer"</span>, <span style="color: #0a74b9;">"org.apache.kafka.common.serialization.StringDeserializer"</span>);
+props.put(<span style="color: #0a74b9;">"value.deserializer"</span>, <span style="color: #0a74b9;">"org.apache.kafka.common.serialization.StringDeserializer"</span>);
+
+<span style="color: #2492db;">KafkaConsumer</span>&lt;<span style="color: #2492db;">String</span>, <span style="color: #2492db;">String</span>&gt; <span style="color: #8e44ad;">consumer</span> = <span style="color: #d98c10;">new</span> <span style="color: #2492db;">KafkaConsumer</span>&lt;&gt;(props);
+consumer.subscribe(Arrays.asList(<span style="color: #0a74b9;">"foo"</span>, <span style="color: #0a74b9;">"bar"</span>));
+
+<span style="color: #d98c10;">while</span> (<span style="color: #e67e22;">true</span>) {
+    <span style="color: #2492db;">ConsumerRecords</span>&lt;<span style="color: #2492db;">String</span>, <span style="color: #2492db;">String</span>&gt; <span style="color: #8e44ad;">records</span> = consumer.poll(100);
+    <span style="color: #d98c10;">for</span> (ConsumerRecord&lt;<span style="color: #2492db;">String</span>, String&gt; record : records)
+        System.out.printf(<span style="color: #0a74b9;">"offset = %d, key = %s, value = %s"</span>, record.offset(), record.key(), record.value());
+}
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #d98c10;">ns</span> <span style="color: #2492db;">gregor-sample-app.core</span>
+  (<span style="color: #e67e22;">:require</span> [<span style="color: #2492db;">gregor.core</span> <span style="color: #e67e22;">:as</span> gregor]))
+
+(<span style="color: #d98c10;">def</span> <span style="color: #8e44ad;">props</span> {<span style="color: #0a74b9;">"auto.offset.reset"</span>       <span style="color: #0a74b9;">"earliest"</span>
+            <span style="color: #0a74b9;">"auto.commit.interval.ms"</span> <span style="color: #0a74b9;">"1000"</span>
+            <span style="color: #0a74b9;">"enable.auto.commit"</span>      <span style="color: #0a74b9;">"true"</span>
+            <span style="color: #0a74b9;">"session.timeout.ms"</span>      <span style="color: #0a74b9;">"30000"</span>})
+
+(<span style="color: #d98c10;">def</span> <span style="color: #8e44ad;">consumer</span> (<span style="color: #2492db;">gregor</span><span style="color: #2c3e50; background-color: #ecf0f1;">/</span>consumer <span style="color: #0a74b9;">"localhost:9092"</span> <span style="color: #0a74b9;">"test"</span> [<span style="color: #0a74b9;">"foo"</span> <span style="color: #0a74b9;">"bar"</span>] props))
+
+(while <span style="color: #e67e22;">true</span>
+    (<span style="color: #d98c10;">let</span> [consumer-records (<span style="color: #2492db;">gregor</span><span style="color: #2c3e50; background-color: #ecf0f1;">/</span>poll consumer 100)]
+      (<span style="color: #d98c10;">doseq</span> [{<span style="color: #e67e22;">:keys</span> [offset key value]} recs]
+        (println <span style="color: #0a74b9;">"offset = "</span> offset <span style="color: #0a74b9;">", key = "</span> key <span style="color: #0a74b9;">", value = "</span> value))))
+</pre>
+</div>
+
+<p>
+Excellent, clojure data structures and functions. Though in fact, using Java interop
+would look pretty similar to the Gregor code above. The <code>consumer</code> function defaults to
+using <code>StringDeserializer</code> for both key and value deserializers, but you can specify a
+different one in the (optional) <code>props</code> map.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">Producer API</h2>
+<div class="outline-text-2" id="text-orgheadline2">
+<p>
+Now let's take a look at the <code>KafkaProducer</code> <a href="https://kafka.apache.org/090/javadoc/index.html?org/apache/kafka/clients/producer/KafkaProducer.html">example</a>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #2492db;">Properties</span> <span style="color: #8e44ad;">props</span> = <span style="color: #d98c10;">new</span> <span style="color: #2492db;">Properties</span>();
+props.put(<span style="color: #0a74b9;">"bootstrap.servers"</span>, <span style="color: #0a74b9;">"localhost:4242"</span>);
+props.put(<span style="color: #0a74b9;">"acks"</span>, <span style="color: #0a74b9;">"all"</span>);
+props.put(<span style="color: #0a74b9;">"retries"</span>, 0);
+props.put(<span style="color: #0a74b9;">"batch.size"</span>, 16384);
+props.put(<span style="color: #0a74b9;">"linger.ms"</span>, 1);
+props.put(<span style="color: #0a74b9;">"buffer.memory"</span>, 33554432);
+props.put(<span style="color: #0a74b9;">"key.serializer"</span>, <span style="color: #0a74b9;">"org.apache.kafka.common.serialization.StringSerializer"</span>);
+props.put(<span style="color: #0a74b9;">"value.serializer"</span>, <span style="color: #0a74b9;">"org.apache.kafka.common.serialization.StringSerializer"</span>);
+
+<span style="color: #2492db;">Producer</span>&lt;<span style="color: #2492db;">String</span>, <span style="color: #2492db;">String</span>&gt; <span style="color: #8e44ad;">producer</span> = <span style="color: #d98c10;">new</span> <span style="color: #2492db;">KafkaProducer</span>&lt;&gt;(props);
+<span style="color: #d98c10;">for</span>(<span style="color: #2492db;">int</span> <span style="color: #8e44ad;">i</span> = 0; i &lt; 100; i++)
+    producer.send(<span style="color: #d98c10;">new</span> <span style="color: #2492db;">ProducerRecord</span>&lt;<span style="color: #2492db;">String</span>, <span style="color: #2492db;">String</span>&gt;(<span style="color: #0a74b9;">"my-topic"</span>, Integer.toString(i)));
+
+producer.close();
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #d98c10;">ns</span> <span style="color: #2492db;">gregor-sample-app.core</span>
+  (<span style="color: #e67e22;">:require</span> [<span style="color: #2492db;">gregor.core</span> <span style="color: #e67e22;">:as</span> gregor]))
+
+(<span style="color: #d98c10;">def</span> <span style="color: #8e44ad;">props</span> {<span style="color: #0a74b9;">"acks"</span>              <span style="color: #0a74b9;">"all"</span>
+            <span style="color: #0a74b9;">"retries"</span>           0
+            <span style="color: #0a74b9;">"batch.size"</span>        16384
+            <span style="color: #0a74b9;">"linger.ms"</span>         1
+            <span style="color: #0a74b9;">"buffer.memory"</span>     33554432
+            <span style="color: #0a74b9;">"auto.offset.reset"</span> <span style="color: #0a74b9;">"earliest"</span>})
+
+(<span style="color: #d98c10;">def</span> <span style="color: #8e44ad;">producer</span> (<span style="color: #2492db;">gregor</span><span style="color: #2c3e50; background-color: #ecf0f1;">/</span>producer <span style="color: #0a74b9;">"localhost:4242"</span> props))
+
+(<span style="color: #d98c10;">dotimes</span> [i 100] (<span style="color: #2492db;">gregor</span><span style="color: #2c3e50; background-color: #ecf0f1;">/</span>send producer <span style="color: #0a74b9;">"my-topic"</span> (str i)))
+
+(<span style="color: #2492db;">gregor</span><span style="color: #2c3e50; background-color: #ecf0f1;">/</span>close producer)
+</pre>
+</div>
+
+<p>
+Just like the Consumer, the Producer defaults to <code>StringSerializer</code> for both keys and
+values. Also noteworthy is that the <code>send</code> function has multiple arities that allow you
+to specify the partition to which the record should be sent, the record <code>key</code>, and a
+callback in addition to the value.
+</p>
+
+<p>
+In a future post I'll cover at-least-once processing semantics with Gregor and using lazy
+sequences to consume records.
+</p>
+</div>
+</div>
