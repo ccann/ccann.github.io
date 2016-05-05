@@ -1,0 +1,51 @@
+---
+layout: post
+title: Generating Random Latitudes and Longitudes
+---
+
+<p>
+I've been working on an API that serves up information about geographic coordinates. At
+Weft we're specifically curious about which of our shapefiles contain the coordinates in
+question. In optimizing that query I had to generate a bunch of random coordinates&#x2026;
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #d98c10;">defn</span> <span style="color: #34495e; font-weight: bold;">-&gt;coord</span>
+  [coord-type n]
+  (<span style="color: #d98c10;">when</span> n
+    (<span style="color: #d98c10;">case</span> coord-type
+      <span style="color: #e67e22;">:lat</span> (assert (<span style="color: #d98c10;">and</span> (&gt;= n -90) (&lt;= n 90)))
+      <span style="color: #e67e22;">:lon</span> (assert (<span style="color: #d98c10;">and</span> (&gt;= n -180) (&lt;= n 180))))
+    (<span style="color: #d98c10;">-&gt;&gt;</span> n (double) (format <span style="color: #0a74b9;">"%.6f"</span>) (<span style="color: #2492db;">Double.</span>))))
+
+(<span style="color: #d98c10;">defn</span> <span style="color: #34495e; font-weight: bold;">rand-lat</span> []
+  (<span style="color: #d98c10;">let</span> [random (<span style="color: #2492db;">java.util.Random.</span>)
+        max 90
+        min -90
+        diff (- max min)]
+      (<span style="color: #d98c10;">-&gt;&gt;</span> random (<span style="color: #e74c3c; font-weight: bold;">.nextDouble</span>) (* diff) (+ min) (-&gt;coord <span style="color: #e67e22;">:lat</span>))))
+
+(<span style="color: #d98c10;">defn</span> <span style="color: #34495e; font-weight: bold;">rand-lon</span> []
+  (<span style="color: #d98c10;">let</span> [random (<span style="color: #2492db;">java.util.Random.</span>)
+        max 180
+        min -180
+        diff (- max min)]
+  (<span style="color: #d98c10;">-&gt;&gt;</span> random (<span style="color: #e74c3c; font-weight: bold;">.nextDouble</span>) (* diff) (+ min) (-&gt;coord <span style="color: #e67e22;">:lon</span>))))
+</pre>
+</div>
+
+<p>
+These basic functions turn out to be pretty nifty when you want to pass a seq of lat/lon
+pairs to a function:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(get-enclosing-shapefiles @conn (<span style="color: #d98c10;">for</span> [_ (range 100)] [(rand-lat) (rand-lon)]))
+</pre>
+</div>
+
+<p>
+That's all. Happy query-optimizing.
+</p>
