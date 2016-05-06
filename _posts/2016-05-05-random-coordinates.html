@@ -24,14 +24,14 @@ question. In optimizing that query I had to generate a bunch of random coordinat
         max 90
         min -90
         diff (- max min)]
-      (<span style="color: #d98c10;">-&gt;&gt;</span> random (<span style="color: #e74c3c; font-weight: bold;">.nextDouble</span>) (* diff) (+ min) (-&gt;coord <span style="color: #e67e22;">:lat</span>))))
+    (<span style="color: #d98c10;">-&gt;&gt;</span> random (<span style="color: #e74c3c; font-weight: bold;">.nextDouble</span>) (* diff) (+ min) (-&gt;coord <span style="color: #e67e22;">:lat</span>))))
 
 (<span style="color: #d98c10;">defn</span> <span style="color: #34495e; font-weight: bold;">rand-lon</span> []
   (<span style="color: #d98c10;">let</span> [random (<span style="color: #2492db;">java.util.Random.</span>)
         max 180
         min -180
         diff (- max min)]
-  (<span style="color: #d98c10;">-&gt;&gt;</span> random (<span style="color: #e74c3c; font-weight: bold;">.nextDouble</span>) (* diff) (+ min) (-&gt;coord <span style="color: #e67e22;">:lon</span>))))
+    (<span style="color: #d98c10;">-&gt;&gt;</span> random (<span style="color: #e74c3c; font-weight: bold;">.nextDouble</span>) (* diff) (+ min) (-&gt;coord <span style="color: #e67e22;">:lon</span>))))
 </pre>
 </div>
 
