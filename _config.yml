@@ -7,6 +7,8 @@
 
 # Site settings
 title: Clojure At Sea
+# comments: true
+# disqus: clojureatsea
 author: Cody Canning
 email: cocanning11@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
