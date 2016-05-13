@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Gregor</title>
+  <meta name="description" content="Gregor is an open-source Clojure interface to Apache Kafka.">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://ccann.github.io/2016/05/05/gregor.html">
+  <link rel="alternate" type="application/rss+xml" title="Clojure At Sea" href="http://ccann.github.io/feed.xml">
+</head>
+
+  <!-- Begin Jekyll SEO tag v1.4.0 -->
+<title>Gregor - Clojure At Sea</title>
+<meta property="og:title" content="Gregor" />
+<meta name="description" content="Gregor is an open-source Clojure interface to Apache Kafka." />
+<meta property="og:description" content="Gregor is an open-source Clojure interface to Apache Kafka." />
+<link rel="canonical" href="http://ccann.github.io/2016/05/05/gregor.html" />
+<meta property="og:url" content="http://ccann.github.io/2016/05/05/gregor.html" />
+<meta property="og:site_name" content="Clojure At Sea" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-05-05T00:00:00-04:00" />
+<link rel="next" href="http://ccann.github.io/2016/05/05/random-coordinates.html" title="Generating Random Latitudes and Longitudes" />
+<link rel="prev" href="http://ccann.github.io/2016/01/22/python-print-same-line.html" title="Print to the Same Line in Python" />
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Gregor",
+    "datePublished": "2016-05-05T00:00:00-04:00",
+    "description": "Gregor is an open-source Clojure interface to Apache Kafka.",
+    "url": "http://ccann.github.io/2016/05/05/gregor.html"
+  }
+</script>
+<!-- End Jekyll SEO tag -->
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Clojure At Sea</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Gregor</h1>
+    <p class="post-meta"><time datetime="2016-05-05T00:00:00-04:00" itemprop="datePublished">May 5, 2016</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>
+<a href="https://github.com/weftio/gregor">Gregor</a> is an open-source Clojure interface to <a href="http://kafka.apache.org/">Apache Kafka</a>.
+</p>
+
+<p>
+We use Kafka at Weft as the messaging system that ties our microservices together. Many
+of those services are written in Clojure and target Kafka <code>0.9</code>. The Kafka API is well
+designed and easy to use &#x2013; leveraging Clojure's Java interop in this case is fairly
+straightforward, but we wanted something more idiomatic and consistent throughout our
+pipeline. Gregor was born out of that need.
+</p>
+
+<p>
+There are other Kafka libraries available for Clojure including <a href="https://github.com/pingles/clj-kafka"><code>clj-kafka</code></a> and
+<a href="https://github.com/gerritjvv/kafka-fast"><code>kafka-fast</code></a>. At this time of this writing <code>clj-kafka</code> targets Kafka <code>0.8</code> which was a
+non-starter for us. <code>kafka-fast</code> swaps out Zookeeper for Redis which wasn't quite what we
+wanted, either. Gregor strives only to be an idiomatic, lightweight set of functions that
+are easy to reason about and use in combination with Kafka's Java classes when
+necessary.
+</p>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">Consumer API</h2>
+<div class="outline-text-2" id="text-orgheadline1">
+<p>
+Here's a direct comparison of constructing a <code>KafkaConsumer</code> <a href="http://kafka.apache.org/090/javadoc/index.html?org/apache/kafka/clients/consumer/KafkaConsumer.html">using the Java API</a> and
+Gregor's Clojure API:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #2492db;">Properties</span> <span style="color: #8e44ad;">props</span> = <span style="color: #d98c10;">new</span> <span style="color: #2492db;">Properties</span>();
+props.put(<span style="color: #0a74b9;">"bootstrap.servers"</span>, <span style="color: #0a74b9;">"localhost:9092"</span>);
+props.put(<span style="color: #0a74b9;">"group.id"</span>, <span style="color: #0a74b9;">"test"</span>);
+props.put(<span style="color: #0a74b9;">"enable.auto.commit"</span>, <span style="color: #0a74b9;">"true"</span>);
+props.put(<span style="color: #0a74b9;">"auto.commit.interval.ms"</span>, <span style="color: #0a74b9;">"1000"</span>);
+props.put(<span style="color: #0a74b9;">"session.timeout.ms"</span>, <span style="color: #0a74b9;">"30000"</span>);
+props.put(<span style="color: #0a74b9;">"key.deserializer"</span>, <span style="color: #0a74b9;">"org.apache.kafka.common.serialization.StringDeserializer"</span>);
+props.put(<span style="color: #0a74b9;">"value.deserializer"</span>, <span style="color: #0a74b9;">"org.apache.kafka.common.serialization.StringDeserializer"</span>);
+
+<span style="color: #2492db;">KafkaConsumer</span>&lt;<span style="color: #2492db;">String</span>, <span style="color: #2492db;">String</span>&gt; <span style="color: #8e44ad;">consumer</span> = <span style="color: #d98c10;">new</span> <span style="color: #2492db;">KafkaConsumer</span>&lt;&gt;(props);
+consumer.subscribe(Arrays.asList(<span style="color: #0a74b9;">"foo"</span>, <span style="color: #0a74b9;">"bar"</span>));
+
+<span style="color: #d98c10;">while</span> (<span style="color: #e67e22;">true</span>) {
+    <span style="color: #2492db;">ConsumerRecords</span>&lt;<span style="color: #2492db;">String</span>, <span style="color: #2492db;">String</span>&gt; <span style="color: #8e44ad;">records</span> = consumer.poll(100);
+    <span style="color: #d98c10;">for</span> (ConsumerRecord&lt;<span style="color: #2492db;">String</span>, String&gt; record : records)
+        System.out.printf(<span style="color: #0a74b9;">"offset = %d, key = %s, value = %s"</span>, record.offset(), record.key(), record.value());
+}
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #d98c10;">ns</span> <span style="color: #2492db;">gregor-sample-app.core</span>
+  (<span style="color: #e67e22;">:require</span> [<span style="color: #2492db;">gregor.core</span> <span style="color: #e67e22;">:as</span> gregor]))
+
+(<span style="color: #d98c10;">def</span> <span style="color: #8e44ad;">props</span> {<span style="color: #0a74b9;">"auto.offset.reset"</span>       <span style="color: #0a74b9;">"earliest"</span>
+            <span style="color: #0a74b9;">"auto.commit.interval.ms"</span> <span style="color: #0a74b9;">"1000"</span>
+            <span style="color: #0a74b9;">"enable.auto.commit"</span>      <span style="color: #0a74b9;">"true"</span>
+            <span style="color: #0a74b9;">"session.timeout.ms"</span>      <span style="color: #0a74b9;">"30000"</span>})
+
+(<span style="color: #d98c10;">def</span> <span style="color: #8e44ad;">consumer</span> (<span style="color: #2492db;">gregor</span><span style="color: #2c3e50; background-color: #ecf0f1;">/</span>consumer <span style="color: #0a74b9;">"localhost:9092"</span> <span style="color: #0a74b9;">"test"</span> [<span style="color: #0a74b9;">"foo"</span> <span style="color: #0a74b9;">"bar"</span>] props))
+
+(while <span style="color: #e67e22;">true</span>
+    (<span style="color: #d98c10;">let</span> [consumer-records (<span style="color: #2492db;">gregor</span><span style="color: #2c3e50; background-color: #ecf0f1;">/</span>poll consumer 100)]
+      (<span style="color: #d98c10;">doseq</span> [{<span style="color: #e67e22;">:keys</span> [offset key value]} recs]
+        (println <span style="color: #0a74b9;">"offset = "</span> offset <span style="color: #0a74b9;">", key = "</span> key <span style="color: #0a74b9;">", value = "</span> value))))
+</pre>
+</div>
+
+<p>
+Excellent, clojure data structures and functions. Though in fact, using Java interop
+would look pretty similar to the Gregor code above. The <code>consumer</code> function defaults to
+using <code>StringDeserializer</code> for both key and value deserializers, but you can specify a
+different one in the (optional) <code>props</code> map.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">Producer API</h2>
+<div class="outline-text-2" id="text-orgheadline2">
+<p>
+Now let's take a look at the <code>KafkaProducer</code> <a href="https://kafka.apache.org/090/javadoc/index.html?org/apache/kafka/clients/producer/KafkaProducer.html">example</a>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #2492db;">Properties</span> <span style="color: #8e44ad;">props</span> = <span style="color: #d98c10;">new</span> <span style="color: #2492db;">Properties</span>();
+props.put(<span style="color: #0a74b9;">"bootstrap.servers"</span>, <span style="color: #0a74b9;">"localhost:4242"</span>);
+props.put(<span style="color: #0a74b9;">"acks"</span>, <span style="color: #0a74b9;">"all"</span>);
+props.put(<span style="color: #0a74b9;">"retries"</span>, 0);
+props.put(<span style="color: #0a74b9;">"batch.size"</span>, 16384);
+props.put(<span style="color: #0a74b9;">"linger.ms"</span>, 1);
+props.put(<span style="color: #0a74b9;">"buffer.memory"</span>, 33554432);
+props.put(<span style="color: #0a74b9;">"key.serializer"</span>, <span style="color: #0a74b9;">"org.apache.kafka.common.serialization.StringSerializer"</span>);
+props.put(<span style="color: #0a74b9;">"value.serializer"</span>, <span style="color: #0a74b9;">"org.apache.kafka.common.serialization.StringSerializer"</span>);
+
+<span style="color: #2492db;">Producer</span>&lt;<span style="color: #2492db;">String</span>, <span style="color: #2492db;">String</span>&gt; <span style="color: #8e44ad;">producer</span> = <span style="color: #d98c10;">new</span> <span style="color: #2492db;">KafkaProducer</span>&lt;&gt;(props);
+<span style="color: #d98c10;">for</span>(<span style="color: #2492db;">int</span> <span style="color: #8e44ad;">i</span> = 0; i &lt; 100; i++)
+    producer.send(<span style="color: #d98c10;">new</span> <span style="color: #2492db;">ProducerRecord</span>&lt;<span style="color: #2492db;">String</span>, <span style="color: #2492db;">String</span>&gt;(<span style="color: #0a74b9;">"my-topic"</span>, Integer.toString(i)));
+
+producer.close();
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #d98c10;">ns</span> <span style="color: #2492db;">gregor-sample-app.core</span>
+  (<span style="color: #e67e22;">:require</span> [<span style="color: #2492db;">gregor.core</span> <span style="color: #e67e22;">:as</span> gregor]))
+
+(<span style="color: #d98c10;">def</span> <span style="color: #8e44ad;">props</span> {<span style="color: #0a74b9;">"acks"</span>              <span style="color: #0a74b9;">"all"</span>
+            <span style="color: #0a74b9;">"retries"</span>           0
+            <span style="color: #0a74b9;">"batch.size"</span>        16384
+            <span style="color: #0a74b9;">"linger.ms"</span>         1
+            <span style="color: #0a74b9;">"buffer.memory"</span>     33554432
+            <span style="color: #0a74b9;">"auto.offset.reset"</span> <span style="color: #0a74b9;">"earliest"</span>})
+
+(<span style="color: #d98c10;">def</span> <span style="color: #8e44ad;">producer</span> (<span style="color: #2492db;">gregor</span><span style="color: #2c3e50; background-color: #ecf0f1;">/</span>producer <span style="color: #0a74b9;">"localhost:4242"</span> props))
+
+(<span style="color: #d98c10;">dotimes</span> [i 100] (<span style="color: #2492db;">gregor</span><span style="color: #2c3e50; background-color: #ecf0f1;">/</span>send producer <span style="color: #0a74b9;">"my-topic"</span> (str i)))
+
+(<span style="color: #2492db;">gregor</span><span style="color: #2c3e50; background-color: #ecf0f1;">/</span>close producer)
+</pre>
+</div>
+
+<p>
+Just like the Consumer, the Producer defaults to <code>StringSerializer</code> for both keys and
+values. Also noteworthy is that the <code>send</code> function has multiple arities that allow you
+to specify the partition to which the record should be sent, the record <code>key</code>, and a
+callback in addition to the value.
+</p>
+
+<p>
+In a future post I'll cover at-least-once processing semantics with Gregor and using lazy
+sequences to consume records.
+</p>
+</div>
+</div>
+
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Clojure At Sea</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>Clojure At Sea</li>
+          <li><a href="mailto:cocanning11@gmail.com">cocanning11@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/ccann"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">ccann</span></a>
+
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>In the trenches with Clojure and Emacs.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
