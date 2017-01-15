@@ -6,9 +6,136 @@
 </description>
     <link>http://ccann.github.io/</link>
     <atom:link href="http://ccann.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 13 May 2016 14:54:41 -0400</pubDate>
-    <lastBuildDate>Fri, 13 May 2016 14:54:41 -0400</lastBuildDate>
+    <pubDate>Sun, 15 Jan 2017 13:50:38 -0500</pubDate>
+    <lastBuildDate>Sun, 15 Jan 2017 13:50:38 -0500</lastBuildDate>
     <generator>Jekyll v3.1.3</generator>
+    
+      <item>
+        <title>Lispy and clj-refactor worship</title>
+        <description>&lt;p&gt;
+In addition to the functionality provided by &lt;code&gt;clojure-mode&lt;/code&gt; and &lt;code&gt;CIDER&lt;/code&gt; I use &lt;a href=&quot;https://github.com/abo-abo/lispy&quot;&gt;lispy&lt;/a&gt; and
+&lt;a href=&quot;https://github.com/clojure-emacs/clj-refactor.el&quot;&gt;clj-refactor&lt;/a&gt; to round out my tooling needs. Each of these packages is deep. I mean really
+deep. I&#39;m constantly revisiting each of them to see if there&#39;s a new command I can adopt
+or a hidden gem I&#39;ve missed.
+&lt;/p&gt;
+
+&lt;p&gt;
+It turns out that these packages complement each other really well &amp;#x2013; I wouldn&#39;t describe
+them as competing tools even if they do have some functionality overlap. &lt;code&gt;clj-refactor&lt;/code&gt;
+provides a host of one-off edit recipes (e.g. add a &lt;code&gt;require&lt;/code&gt; to the namespace) while
+&lt;code&gt;lispy&lt;/code&gt; provides a composable bottom-up approach to structural editing. Finding the time
+to invest into using each of these to their fullest extent is hard and as such I&#39;ve
+focused the most on digesting and incorporating &lt;code&gt;lispy&lt;/code&gt; paired with a pretty small subset
+of the &lt;a href=&quot;https://github.com/clojure-emacs/clj-refactor.el/wiki#available-refactorings&quot;&gt;available &lt;code&gt;clj-refactor&lt;/code&gt; refactorings&lt;/a&gt;, mostly project and namespace-related.
+&lt;/p&gt;
+
+
+&lt;ul class=&quot;org-ul&quot;&gt;
+&lt;li&gt;&lt;code&gt;ap&lt;/code&gt; &lt;a href=&quot;https://github.com/clojure-emacs/clj-refactor.el/wiki/cljr-add-project-dependency&quot;&gt;Add project dependency&lt;/a&gt;
+My absolute favorite refactoring. Hotload a dependency. Saves you having to visit
+&lt;code&gt;project.clj&lt;/code&gt; and, more importantly, &lt;code&gt;cider-jack-in&lt;/code&gt; again after adding a dep to
+&lt;code&gt;project.clj&lt;/code&gt;. But there&#39;s more! You get to choose from all available projects and
+version numbers without leaving your editor to hunt them down. This is especially nice
+since I&#39;m constantly forgetting the &lt;code&gt;groupid&lt;/code&gt; of the libraries I frequently use. I tend
+to follow this one up with an &lt;code&gt;ar&lt;/code&gt; of course.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;ul class=&quot;org-ul&quot;&gt;
+&lt;li&gt;&lt;code&gt;am&lt;/code&gt; &lt;a href=&quot;https://github.com/clojure-emacs/clj-refactor.el/wiki/cljr-add-missing-libspec&quot;&gt;Add missing libspec&lt;/a&gt;
+My second favorite. Require or import based on the symbol at point. If I&#39;m going to
+refer, e.g. a function, into my namespace from a library that I haven&#39;t required yet I
+can just type the name of the function and then &lt;code&gt;C-c C-m am&lt;/code&gt; the full libspec into my
+&lt;code&gt;ns&lt;/code&gt; form. With some of the more common libs this happens automatically when you type a
+commonly used namespace alias like &lt;code&gt;(str/...&lt;/code&gt; for &lt;code&gt;clojure.string&lt;/code&gt; but this has you
+covered for all other cases.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;ul class=&quot;org-ul&quot;&gt;
+&lt;li&gt;&lt;code&gt;ar&lt;/code&gt; &lt;a href=&quot;https://github.com/clojure-emacs/clj-refactor.el/wiki/cljr-add-require-to-ns&quot;&gt;Add require to namespace definition&lt;/a&gt;
+I use this when I know I want to alias an entire namespace instead of &lt;code&gt;:refer&lt;/code&gt; -ing
+specific vars.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;ul class=&quot;org-ul&quot;&gt;
+&lt;li&gt;&lt;code&gt;ai&lt;/code&gt; &lt;a href=&quot;https://github.com/clojure-emacs/clj-refactor.el/wiki/cljr-add-import-to-ns&quot;&gt;Add import to namespace declaration&lt;/a&gt;
+The title pretty much sums this one up.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;ul class=&quot;org-ul&quot;&gt;
+&lt;li&gt;&lt;code&gt;cn&lt;/code&gt; &lt;a href=&quot;https://github.com/clojure-emacs/clj-refactor.el/wiki/cljr-clean-ns&quot;&gt;Clean ns&lt;/a&gt;
+Cleans up your namespace. I love using this after I&#39;ve been working with a namespace
+for a while to clean up unused deps and for the clean, easily digestable &lt;code&gt;ns&lt;/code&gt; form.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;ul class=&quot;org-ul&quot;&gt;
+&lt;li&gt;&lt;code&gt;rf&lt;/code&gt; &lt;a href=&quot;https://github.com/clojure-emacs/clj-refactor.el/wiki/cljr-rename-file-or-dir&quot;&gt;Rename file or dir&lt;/a&gt;
+I&#39;m constantly moving namespaces around. Saves you having to update the &lt;code&gt;ns&lt;/code&gt; form
+manually and remembering to use underscores instead of dashes in the file name.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+As for &lt;code&gt;lispy&lt;/code&gt; there&#39;s similarly &lt;a href=&quot;http://oremacs.com/lispy/&quot;&gt;a lot to like&lt;/a&gt;. Some of my favorite bits are:
+&lt;/p&gt;
+
+&lt;ul class=&quot;org-ul&quot;&gt;
+&lt;li&gt;&lt;code&gt;q&lt;/code&gt;, &lt;code&gt;a&lt;/code&gt;, &lt;code&gt;t&lt;/code&gt;: some of the &lt;code&gt;ace-&lt;/code&gt; commands. Navigating the point to an open paren like
+this is awesome. I love that both are one key away (which is the case for most of
+these, but still!). &lt;code&gt;a&lt;/code&gt; is especially great for deleting, copying symbols. &lt;code&gt;t&lt;/code&gt; for
+teleporting expressions and regions is immensely useful.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;ul class=&quot;org-ul&quot;&gt;
+&lt;li&gt;&lt;code&gt;v&lt;/code&gt;, &lt;code&gt;N&lt;/code&gt;, &lt;code&gt;W&lt;/code&gt;: recentering the view is great for ergonomics. I use vertical monitors
+and &lt;code&gt;v&lt;/code&gt; let&#39;s me mindlessly pull what I&#39;m editing into view instead of craning my
+neck. &lt;code&gt;N&lt;/code&gt; for narrowing has a similar use-case but with the added benefit of allowing
+you to focus on just that expression. This is a really nice way to focus up.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;ul class=&quot;org-ul&quot;&gt;
+&lt;li&gt;&lt;code&gt;i&lt;/code&gt;: fix up whitespace and indentation with a single keystroke. Yes please.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Both &lt;code&gt;lispy&lt;/code&gt; and &lt;code&gt;clj-refactor&lt;/code&gt; also require very little configuration. I&#39;ll leave you
+with my configs if you want to get started with either package and need a jumping off
+point. Oh, and lastly, I&#39;d like to express my gratitude to the authors of these
+packages: &lt;b&gt;thank you so much for what you do!&lt;/b&gt;
+&lt;/p&gt;
+
+&lt;div class=&quot;org-src-container&quot;&gt;
+&lt;pre class=&quot;src src-elisp&quot;&gt;(add-hook &#39;cider-mode-hook #&#39;clj-refactor-mode)
+
+(add-hook &#39;clojure-mode-hook #&#39;lispy-mode)
+
+(&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;clj-refactor&lt;/span&gt;
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:ensure&lt;/span&gt; t
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:defer&lt;/span&gt; t
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:config&lt;/span&gt; (cljr-add-keybindings-with-prefix &lt;span style=&quot;color: #0a74b9;&quot;&gt;&quot;C-c C-m&quot;&lt;/span&gt;))
+
+(&lt;span style=&quot;color: #d98c10;&quot;&gt;use-package&lt;/span&gt; &lt;span style=&quot;color: #e67e22;&quot;&gt;lispy&lt;/span&gt;
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:ensure&lt;/span&gt; t
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:defer&lt;/span&gt; t
+  &lt;span style=&quot;color: #16a085;&quot;&gt;:init&lt;/span&gt; (&lt;span style=&quot;color: #d98c10;&quot;&gt;setq&lt;/span&gt; lispy-compat &#39;(cider)))
+&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Sun, 15 Jan 2017 00:00:00 -0500</pubDate>
+        <link>http://ccann.github.io/2017/01/15/structural-editing-lisp.html</link>
+        <guid isPermaLink="true">http://ccann.github.io/2017/01/15/structural-editing-lisp.html</guid>
+        
+        <category>emacs</category>
+        
+        <category>clojure</category>
+        
+        
+      </item>
     
       <item>
         <title>Generating Random Latitudes and Longitudes</title>

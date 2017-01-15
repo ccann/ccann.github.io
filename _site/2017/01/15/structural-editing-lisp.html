@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Lispy and clj-refactor worship</title>
+  <meta name="description" content="In addition to the functionality provided by clojure-mode and CIDER I use lispy andclj-refactor to round out my tooling needs. Each of these packages is deep...">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://ccann.github.io/2017/01/15/structural-editing-lisp.html">
+  <link rel="alternate" type="application/rss+xml" title="Clojure At Sea" href="http://ccann.github.io/feed.xml">
+</head>
+
+  <!-- Begin Jekyll SEO tag v1.4.0 -->
+<title>Lispy and clj-refactor worship - Clojure At Sea</title>
+<meta property="og:title" content="Lispy and clj-refactor worship" />
+<meta name="description" content="In addition to the functionality provided by clojure-mode and CIDER I use lispy andclj-refactor to round out my tooling needs. Each of these packages is deep. I mean reallydeep. I&#39;m constantly revisiting each of them to see if there&#39;s a new command I can adoptor a hidden gem I&#39;ve missed." />
+<meta property="og:description" content="In addition to the functionality provided by clojure-mode and CIDER I use lispy andclj-refactor to round out my tooling needs. Each of these packages is deep. I mean reallydeep. I&#39;m constantly revisiting each of them to see if there&#39;s a new command I can adoptor a hidden gem I&#39;ve missed." />
+<link rel="canonical" href="http://ccann.github.io/2017/01/15/structural-editing-lisp.html" />
+<meta property="og:url" content="http://ccann.github.io/2017/01/15/structural-editing-lisp.html" />
+<meta property="og:site_name" content="Clojure At Sea" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-01-15T00:00:00-05:00" />
+<link rel="prev" href="http://ccann.github.io/2016/05/05/random-coordinates.html" title="Generating Random Latitudes and Longitudes" />
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Lispy and clj-refactor worship",
+    "datePublished": "2017-01-15T00:00:00-05:00",
+    "description": "In addition to the functionality provided by clojure-mode and CIDER I use lispy andclj-refactor to round out my tooling needs. Each of these packages is deep. I mean reallydeep. I&#39;m constantly revisiting each of them to see if there&#39;s a new command I can adoptor a hidden gem I&#39;ve missed.",
+    "url": "http://ccann.github.io/2017/01/15/structural-editing-lisp.html"
+  }
+</script>
+<!-- End Jekyll SEO tag -->
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Clojure At Sea</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Lispy and clj-refactor worship</h1>
+    <p class="post-meta"><time datetime="2017-01-15T00:00:00-05:00" itemprop="datePublished">Jan 15, 2017</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>
+In addition to the functionality provided by <code>clojure-mode</code> and <code>CIDER</code> I use <a href="https://github.com/abo-abo/lispy">lispy</a> and
+<a href="https://github.com/clojure-emacs/clj-refactor.el">clj-refactor</a> to round out my tooling needs. Each of these packages is deep. I mean really
+deep. I'm constantly revisiting each of them to see if there's a new command I can adopt
+or a hidden gem I've missed.
+</p>
+
+<p>
+It turns out that these packages complement each other really well &#x2013; I wouldn't describe
+them as competing tools even if they do have some functionality overlap. <code>clj-refactor</code>
+provides a host of one-off edit recipes (e.g. add a <code>require</code> to the namespace) while
+<code>lispy</code> provides a composable bottom-up approach to structural editing. Finding the time
+to invest into using each of these to their fullest extent is hard and as such I've
+focused the most on digesting and incorporating <code>lispy</code> paired with a pretty small subset
+of the <a href="https://github.com/clojure-emacs/clj-refactor.el/wiki#available-refactorings">available <code>clj-refactor</code> refactorings</a>, mostly project and namespace-related.
+</p>
+
+
+<ul class="org-ul">
+<li><code>ap</code> <a href="https://github.com/clojure-emacs/clj-refactor.el/wiki/cljr-add-project-dependency">Add project dependency</a>
+My absolute favorite refactoring. Hotload a dependency. Saves you having to visit
+<code>project.clj</code> and, more importantly, <code>cider-jack-in</code> again after adding a dep to
+<code>project.clj</code>. But there's more! You get to choose from all available projects and
+version numbers without leaving your editor to hunt them down. This is especially nice
+since I'm constantly forgetting the <code>groupid</code> of the libraries I frequently use. I tend
+to follow this one up with an <code>ar</code> of course.</li>
+</ul>
+
+
+<ul class="org-ul">
+<li><code>am</code> <a href="https://github.com/clojure-emacs/clj-refactor.el/wiki/cljr-add-missing-libspec">Add missing libspec</a>
+My second favorite. Require or import based on the symbol at point. If I'm going to
+refer, e.g. a function, into my namespace from a library that I haven't required yet I
+can just type the name of the function and then <code>C-c C-m am</code> the full libspec into my
+<code>ns</code> form. With some of the more common libs this happens automatically when you type a
+commonly used namespace alias like <code>(str/...</code> for <code>clojure.string</code> but this has you
+covered for all other cases.</li>
+</ul>
+
+
+<ul class="org-ul">
+<li><code>ar</code> <a href="https://github.com/clojure-emacs/clj-refactor.el/wiki/cljr-add-require-to-ns">Add require to namespace definition</a>
+I use this when I know I want to alias an entire namespace instead of <code>:refer</code> -ing
+specific vars.</li>
+</ul>
+
+
+<ul class="org-ul">
+<li><code>ai</code> <a href="https://github.com/clojure-emacs/clj-refactor.el/wiki/cljr-add-import-to-ns">Add import to namespace declaration</a>
+The title pretty much sums this one up.</li>
+</ul>
+
+
+<ul class="org-ul">
+<li><code>cn</code> <a href="https://github.com/clojure-emacs/clj-refactor.el/wiki/cljr-clean-ns">Clean ns</a>
+Cleans up your namespace. I love using this after I've been working with a namespace
+for a while to clean up unused deps and for the clean, easily digestable <code>ns</code> form.</li>
+</ul>
+
+
+<ul class="org-ul">
+<li><code>rf</code> <a href="https://github.com/clojure-emacs/clj-refactor.el/wiki/cljr-rename-file-or-dir">Rename file or dir</a>
+I'm constantly moving namespaces around. Saves you having to update the <code>ns</code> form
+manually and remembering to use underscores instead of dashes in the file name.</li>
+</ul>
+
+<p>
+As for <code>lispy</code> there's similarly <a href="http://oremacs.com/lispy/">a lot to like</a>. Some of my favorite bits are:
+</p>
+
+<ul class="org-ul">
+<li><code>q</code>, <code>a</code>, <code>t</code>: some of the <code>ace-</code> commands. Navigating the point to an open paren like
+this is awesome. I love that both are one key away (which is the case for most of
+these, but still!). <code>a</code> is especially great for deleting, copying symbols. <code>t</code> for
+teleporting expressions and regions is immensely useful.</li>
+</ul>
+
+
+<ul class="org-ul">
+<li><code>v</code>, <code>N</code>, <code>W</code>: recentering the view is great for ergonomics. I use vertical monitors
+and <code>v</code> let's me mindlessly pull what I'm editing into view instead of craning my
+neck. <code>N</code> for narrowing has a similar use-case but with the added benefit of allowing
+you to focus on just that expression. This is a really nice way to focus up.</li>
+</ul>
+
+
+<ul class="org-ul">
+<li><code>i</code>: fix up whitespace and indentation with a single keystroke. Yes please.</li>
+</ul>
+
+<p>
+Both <code>lispy</code> and <code>clj-refactor</code> also require very little configuration. I'll leave you
+with my configs if you want to get started with either package and need a jumping off
+point. Oh, and lastly, I'd like to express my gratitude to the authors of these
+packages: <b>thank you so much for what you do!</b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">(add-hook 'cider-mode-hook #'clj-refactor-mode)
+
+(add-hook 'clojure-mode-hook #'lispy-mode)
+
+(<span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">clj-refactor</span>
+  <span style="color: #16a085;">:ensure</span> t
+  <span style="color: #16a085;">:defer</span> t
+  <span style="color: #16a085;">:config</span> (cljr-add-keybindings-with-prefix <span style="color: #0a74b9;">"C-c C-m"</span>))
+
+(<span style="color: #d98c10;">use-package</span> <span style="color: #e67e22;">lispy</span>
+  <span style="color: #16a085;">:ensure</span> t
+  <span style="color: #16a085;">:defer</span> t
+  <span style="color: #16a085;">:init</span> (<span style="color: #d98c10;">setq</span> lispy-compat '(cider)))
+</pre>
+</div>
+
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Clojure At Sea</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>Clojure At Sea</li>
+          <li><a href="mailto:cocanning11@gmail.com">cocanning11@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/ccann"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">ccann</span></a>
+
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>In the trenches with Clojure and Emacs.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
